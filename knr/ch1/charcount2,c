@@ -1,0 +1,7 @@
+
+//using  a for llop to count the characters entered by a user
+#include <stdio.h>
+int main()
+{
+    
+}
