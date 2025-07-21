@@ -8,5 +8,6 @@ int main()
     for (wc = 0;getchar() != EOF; ++wc)
     ;
     printf("%ld\n",wc);
+    
 
 }
