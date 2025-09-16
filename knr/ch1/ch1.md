@@ -1,6 +1,6 @@
 # Introduction
 
-[] Any C program however its size consists of :
+[] Any C _program_ however its size consists of :
     1. Functions - Specify the statements used to do the computation
     2. Variables - Store values used in computation
     
@@ -37,11 +37,18 @@
 [[Character input and output]]
 The stardard c library treats both input and output on a per character basis
 two basic functions:
-    1. getchar() = reads a character from an input stream;returns an EOF when there is no real character found -so int is used to be able to hold size of EOF
-    2. putchar(c) - prints the content of the interger value c as a  character  
+    1. getchar() = reads a character from an input stream;returns an EOF when there is no real character found - stores the ASCII value of the character
+    2. putchar(c) - prints the ASCII  interger value c as a  character  
 
 -The else is executed automatically if no else if or if condition that evaluates to be true
 
 # Arrays
--index stards from 0
--In any character set the sequence 0-9 is consequtive,so we can get the numerical value of a character read as input by finding the differnce between that character and zero ('0')
+-index starts from 0
+-In any character set the sequence 0-9 is consequtive,so we can get the numerical value of a character read as input by.<br> finding the differnce between that character and zero ('0')
+-To pass an array as an argument in a function: - you just pass its name- what the function sees is the address of the first element in that array
+
+ 
+  
+
+
+
