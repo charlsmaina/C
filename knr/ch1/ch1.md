@@ -47,6 +47,13 @@ two basic functions:
 -In any character set the sequence 0-9 is consequtive,so we can get the numerical value of a character read as input by.<br> finding the differnce between that character and zero ('0')
 -To pass an array as an argument in a function: - you just pass its name- what the function sees is the address of the first element in that array
 
+# External variabls and scope:
+-Variables defined in main are local to main -That means no other function can have a direct access to them
+-Local variable comes into existence when the function is called and dissapears once the function is exited - thats why they are clled automatic variables:
+-In static storage class - Local variables retain their values between calls
+-External variables  are the alternative of local or automatic variables. They can be called and accessed by any function in the program. They retain their values even when the caller has returned its value. they can be used in functions as arguments instead of passing argument lists
+-Must be defined outside of any function and must be declared explicitely inside each function that wants to access it - use extern keyword
+
  
   
 
