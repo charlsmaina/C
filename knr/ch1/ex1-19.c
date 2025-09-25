@@ -50,7 +50,7 @@ int lineGet(char line[],int lim)
 
 void reverse( char line[])
 {
-    printf("Reversed line:");
+    printf(" Reversed line::");
     int i;
     for (i = 0; line[i] != '\0'; i++);
     
