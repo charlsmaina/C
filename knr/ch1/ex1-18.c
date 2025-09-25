@@ -43,8 +43,7 @@ int readLine(char line[],int lim)
         i++;
      
     }
-       line[i] = '\0'; 
-
+       line[i] = '\0'; //This is places in the last position. Thats we have to ensure we reserve a place for '\0' and '\n' when checking for array bounds:
        if (i > 0)
              printf("Length before parsing:%d\n",i);
        return i;
