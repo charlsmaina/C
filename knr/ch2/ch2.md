@@ -4,38 +4,53 @@
   ## Types, Operators and expressions
 
   -Declaration states what variables are to be used,what type they are and  may be what are their initial values
+
   -Operators - What is to be done to variables
-  -Expressions - combine variables and constants through operationns to produce new values
+
+  -Expressions - combine variables and constants through operations to produce new values.
+
   -The type of an object determines what values it can have and the set of operations that can be performed unto it
 
   # Basic data types in C
    1.char -capable of holding a single character in the local character set
+
    2.int  - Holds an interger whose size depends on the natural size of an interger in the host machine
-   3. float -A single precision floating point
-   4. double - A double precision floating point
 
-   # Qualifiers used in data types
-    - Short and long for int - used typically to extend the size of int where practical
-    - short -typically 16 bits [int is typically around 32 bits or 16 bits- short is ] - short can't be longer than int
-    -long [ has to be atleast 32 bits -cannot be shorter than int]
+   3.Float -A single precision floating point
 
-    - Signed or unsigned - applicable to both int and char
-    -Unsigned numbers  - are either positive or zero
-    -Long double - represents extended precision floating point
+   4.double - A double precision floating point
 
-    -The size of this symbolic constants are contained in the header files <limits.h> and <float.h>
-    -The sizes of the various dat types sizes are spsecified in the <limit.h>
-    -ul -unsigned long
-    -A character constant is an interger written as a character within single quotes
+   ## Qualifiers used in data types
+ -Short and long for int - used typically to extend the size of int where practical
+
+-short -typically 16 bits [int is typically around 32 bits or 16 bits ]
+short can't be longer than int
+
+    
+-long [ has to be atleast 32 bit .
+cannot be shorter than int]
+
+-Signed or unsigned - applicable to both int and char
+
+-Unsigned numbers  - are either positive or zero
+
+-Long double - represents extended precision floating point
+
+-The size of this symbolic constants are contained in the header files <limits.h> and <float.h>
+
+-The sizes of the various dat types sizes are spsecified in the <limit.h>
+
+-A character constant is an interger written as a character within single quotes. It is an int as it is stored as so in the ASCII charater set. You cn print a character as an interger and vice versal
+
+-segmentation fault is an error that ocuurs when your computer tries to access memory it is not allowed to access-Example - i tried to create a a character arrary of size 100000000 in the main - main is allocated a few MBs 
+It raised a segmentation fault error
 
 
-```
-      -segmentation fault is an error that ocuurs when your computer tries to access memory it is not allowed to access
-      -Example - i tried to create a a character arrar of size 1000000 in the main - main is allocated a few MBs 
-```
-- '\000' - used to represent an arbitrary octal number
-- '\xhh  -Reps an abitrary hexadecimal number -hh is the hexadecimal number
-# Complete set of escape characters 
+-'\000' - used to represent an arbitrary octal number
+
+-'\xhh  -Reps an abitrary hexadecimal number -hh is the hexadecimal number
+
+## Complete set of escape characters 
       -\n - new line
       -\t -horizontal tab
       -\v -vertical tab
