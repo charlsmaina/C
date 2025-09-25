@@ -15,16 +15,15 @@ pseudocode:
 #include <stdio.h>
 #define LIMIT 6
 
-enum  boolean {NO,YES};
-int inhex ;
+enum  boolean {NO,YES};//{1,0}
 
-
-int _16raise(int n);
+int _16raise(int n);//for raising 16 to the position n
 
 
 int main()
 {
     int htoi(char hx[]);
+
     char hx[LIMIT];
 
     hx [0] = '0';
@@ -32,54 +31,67 @@ int main()
     hx [2] = '0';
     hx [3] = '0';
     hx [4] = '0';
-    hx [5] = 'F';
-  
+    hx [5] = 'A';
 
-    int htoi(char hx[]);
+
+
+printf("The decimal equivalent is :%d\n",htoi(hx));
+
+}
+
+  int htoi(char hx[])
     
 
     {
-        int vhex;
-        int digit;
-        int i = 0;
+        int inhex ;//A yes or no flag
+        int vhex;// gets the decimal equivalnt of the hexadecimal number..ie 0xFFFF
+
+        int digit;//gets the decimal equivalent of a hexadecimal digit...ie F = 15
+        int i = 0;//Index i is for the most left digit
+
+        vhex = 0;
          
         
-
         if (hx[i] == '0')
+       {
         i++;
 
         if (hx[i] == 'x' || hx[i] == 'X')
-        i++;
+        {
+             i++;
 
         inhex = YES;
-        int n = 0;
-
+        }
        
+       } 
+
+        int n = 3;//During conversion position starts at zero. So forth position is equivalent to third
 
         while (inhex == YES)
         {
-            if (hx[i] >= '0' && hx[i] <= '9')
+            if (hx[i] >= '0' && hx[i] <= '9')//digits
             {
                 digit = hx[i] - '0';
                 i++;
             }
-           else if (hx[i] >= 'a' && hx[i] <= 'z')
+           else if (hx[i] >= 'a' && hx[i] <= 'z')//A to
             {
-                digit = hx[i] - 'a';
+                digit = hx[i] - 'a' + 10;
                 i++;
             }
            else if (hx[i] >= 'A' && hx[i] <= 'Z')
             {
-                digit = hx[i] - 'A';
+                digit = hx[i] - 'A' + 10;
                 i++;
             }
             else
              inhex = NO;
 
+
              if (inhex == YES)
              {
                 vhex = vhex + _16raise(n) * digit;
-                n++;
+                n--;
              }   
            
         } 
@@ -88,33 +100,13 @@ int main()
 
 
 
-printf("The decimal equivalent is :%d\n",htoi(hx));
-
-}
-
-
 
 int _16raise(int n)
 {
-    int i;
-    i = 0;
-    int result;
-    result = 0;
-    while (i <= n)
-    {
-        if (i = 0)
-        {
-            result = 1;
-            i++;
-        }
-        else
-        {
-             result = result * 16 ;
-             i++;
-        }
-        
-      
-    }
+    int result = 1;
+    for (int i = 0; i < n; i++)
+        result = result * 16;
+    
     return result;
     
 }
