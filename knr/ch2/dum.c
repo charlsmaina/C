@@ -23,7 +23,7 @@ int main()
 
 
     int c = 'R';
-   if (c >= 'A' && c <= 'Z')
+   if (c >= 'A' && c <= 'Z')// converts a higher case letter to lower case.
    {
     char lower = (c + 'a' - 'A');
 

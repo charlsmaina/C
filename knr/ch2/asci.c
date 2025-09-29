@@ -1,11 +1,11 @@
 //this a program to compute the ascii codes for a given input as a number
 
 #include <stdio.h>
-char line[1000000000];
+unsigned char line[100000];
 
 int main(void)
 {
-    extern char line[];
+    extern unsigned char line[];
     int c;
     int i;
     i = 0;
@@ -30,14 +30,14 @@ int main(void)
 
     }
     
-    for (int k = 0; k < i; ++k)
+   for (int k = 0; k < i; ++k)
     {
         if (line[k] != '\n' && line[k] != '\0')
         {
            printf("%d", line[k]);
         }
 
-    }
-    printf("\n");
+    } 
+        printf("\n");
     return 0;
 }
