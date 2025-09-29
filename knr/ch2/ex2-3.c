@@ -26,7 +26,7 @@ int main()
 
     char hx[LIMIT];
 
-    hx [0] = '0';
+    hx [0] = '0';`
     hx [1] = 'x';
     hx [2] = '0';
     hx [3] = '0';

@@ -112,5 +112,14 @@ to be a large positive number.
 :cast: -explicit type conversion
 (type name.ie double) expression : converts the expression to the type specified.
 
+-Example sqrt((double) 4) -in a case where sqrt expects a double as its argument.
 
+-Decrement operators (++ , --). Can be postfix or prefix. 
 
+-++n - n is increased before it is used
+-n-- - n is increased later after use
+
+Example:
+``` if n = 5 ```
+``` x = n++ sets x to 5 ```
+```x = ++n sets x to 6 ```
