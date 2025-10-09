@@ -34,27 +34,47 @@ Format specifiers include:
 
 2. %x = hexadecimal
 
-3. %o = octal 4. %s = string 5. %c = character
+3. %o = octal
 
-[] We use symbolic constants to to designate values that are of significant importance so that we can give the values meaning
-[] Use the define keyword, then the symbolic constant name,then the symbolic constant value
+4. %s = string
 
-[[Character input and output]]
+5. %c = character
+
+- Symbolic constants are used to designate values that are of significant importance so that we can give the values meaning
+
+- Use the define keyword, then the symbolic constant name,then the symbolic constant value
+
+### Character input and output
+
 The stardard c library treats both input and output on a per character basis
-two basic functions: 1. getchar() = reads a character from an input stream;returns an EOF when there is no real character found - stores the ASCII value of the character 2. putchar(c) - prints the ASCII interger value c as a character
+two basic functions are used :
 
--The else is executed automatically if no else if or if condition that evaluates to be true
+1.  getchar() = reads a character from an input stream;returns an EOF when there is no real character found - stores the ASCII value of the character
 
-# Arrays
+- Example : ` c = getchar();` - A character entered at the terminal is stored in c. Its ascii value is stored in c
 
--index starts from 0
--In any character set the sequence 0-9 is consequtive,so we can get the numerical value of a character read as input by.<br> finding the differnce between that character and zero ('0')
--To pass an array as an argument in a function: - you just pass its name- what the function sees is the address of the first element in that array
+2.  putchar(c) - prints the ASCII interger value c as a character
 
-# External variabls and scope:
+- The else is executed automatically if no else if or if condition that evaluates to be true
 
--Variables defined in main are local to main -That means no other function can have a direct access to them
--Local variable comes into existence when the function is called and dissapears once the function is exited - thats why they are clled automatic variables:
--In static storage class - Local variables retain their values between calls
--External variables are the alternative of local or automatic variables. They can be called and accessed by any function in the program. They retain their values even when the caller has returned its value. they can be used in functions as arguments instead of passing argument lists
--Must be defined outside of any function and must be declared explicitely inside each function that wants to access it - use extern keyword
+### Arrays
+
+- index starts from 0
+
+- In any character set the sequence 0-9 is consequtive,so we can get the numerical value of a character read as input by.<br> finding the differnce between that character and zero ('0')
+
+- To pass an array as an argument in a function: - you just pass its name- what the function sees is the address of the first element in that array
+
+### External variabls and scope:
+
+- Variables defined in main are local to main -That means no other function can have a direct access to them
+
+- Local variable comes into existence when the function is called and dissapears once the function is exited - thats why they are called automatic variables
+
+- In static storage class - Local variables retain their values between calls. It is a way <br> to ensure local variables are not reintialized everytime a function is called which might be useful in some cases.
+
+- External variables are the alternative of local or automatic variables. They can be called and accessed by any function in the program. They retain their values even when the caller has returned its value. they can be used in functions as arguments instead of passing argument lists
+
+- Extern keyword is used in external variables to make them accessible to other files belonging to the same program. This is for cases where you have a program spanning multiple files
+
+- External variables must be defined outside of any function and must be declared explicitely inside each function that wants to access it
