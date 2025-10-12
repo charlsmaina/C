@@ -3,7 +3,7 @@
 #define IN 1
 #define OUT 0
 
-main()
+int main()
 {
     int state, nl, nw, nc, c;
     nl = nw = nc = 0;
@@ -24,4 +24,5 @@ main()
         }
     }
     printf("Characters:%d\nWords:%d\nLines:%d\n", nc, nw, nl);
+    return 0;
 }
