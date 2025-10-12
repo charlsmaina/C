@@ -3,23 +3,25 @@
 #include <stdio.h>
 enum
 {
-    NO,
-    YES
+    NO, // reps 0
+    YES // reps 1
 };
 int main()
 {
-    int new_word;
-    int c, lines, words, chars;
+    int new_word; // tracks if we are inside or outside of a word
+    int c, lines, words, chars, prev_char;
     lines = words = chars = 0;
 
-    new_word = YES;
+    prev_char = '\t'; // this is for ignoring consequtive leading spaces:
+
+    new_word = NO; // We start outside a word: Meaning we only increment words when we see a word or a tab or a space
 
     while ((c = getchar()) != EOF)
     {
         chars++;
         if (c == '\n')
             lines++;
-        if ((c == ' ' || c == '\t') && words != 0)
+        if ((c == '\n' || c == '\t' || c == ' ') && (c == '\n' || (prev_char != ' ' && prev_char != '\t')))
             new_word = YES;
 
         if (new_word == YES)
@@ -27,6 +29,7 @@ int main()
             words++;
             new_word = NO;
         }
+        prev_char = c;
     }
 
     printf("Characters:%i\nLines:%i\nWords:%i\n", chars, lines, words);
