@@ -4,16 +4,14 @@
 
 int main()
 {
-    int c;
-    c = getchar(); //a value read from keyboard is stored in c
-     while(c != EOF)
-     {
-        putchar(c);
-       c = getchar();
-     }
+  int c;
 
-     char ci ;
-     
+  while ((c = getchar()) != EOF)
+  {
+    putchar(c);
+  }
 
-     return 0;
+  printf("%i\n", EOF);
+
+  return 0;
 }
