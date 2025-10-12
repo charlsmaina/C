@@ -22,6 +22,14 @@ int main()
         if (c == '\n')
             lines++;
         if ((c == '\n' || c == '\t' || c == ' ') && (c == '\n' || (prev_char != ' ' && prev_char != '\t')))
+
+            /* This logic checks for words: first bracket is obvious: for the bracket after
+               the && . ..i have found another bug here, i intended {c == '\n' to allow the first empty line
+               with a newline to be recongonized as a word}
+
+               * But on the contrary, if we have a case where we have a space before a newline: since  had used OR, it means nothing else is checked and this may count the newline as an extra word which is not the case. Thats a bug that i need to fix.
+
+            */
             new_word = YES;
 
         if (new_word == YES)
