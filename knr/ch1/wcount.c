@@ -1,43 +1,58 @@
-// This is a program to count the number of wors, characters and lines from an inut stream
+// This is a program to count the number of words, characters and lines from an inut stream
+
+/*
+
+######################################################################################################################################################
+#   - Logic:
+#   - The main  challenge here is couting words
+#   - After multiple iterations i came up with this solution:
+#   - I use enum to store values 0,1, with 0 being OUT, and 1 being IN...enums give variables values
+#    automatically starting  from 0 if the values have not been explicitely stated. I could have used
+#    define instead.
+#   -I used a flag named state to monitor whether am inside a word or outside a word so that i can increment
+#     the word count only when am transitioning to outside a word state after being inside a word with the outside word state  being informed by
+#    word separators like tab, newline or space. ()
+#   -The initial state is outside a word:
+#   - Lets check some of the corner cases that are likely to cause bugs
+#   1.Two spaces or tabs used to start a line
+#       -Since all first characters are spaes and tabs, the state to IN never gets updated hence we never count that as a valid word
+#   2. Two consequtive spaces separating two words: - for state to be updated to IN after word separator - next character must not be a word separator.
+#########################################################################################################################################################
+
+*/
 
 #include <stdio.h>
 enum
 {
-    NO, // reps 0
-    YES // reps 1
+    OUT, // reps 0
+    IN   // reps 1
 };
 int main()
 {
-    int new_word; // tracks if we are inside or outside of a word
+    int state; // tracks if we are inside or outside of a word
     int c, lines, words, chars, prev_char;
     lines = words = chars = 0;
 
-    prev_char = '\t'; // this is for ignoring consequtive leading spaces:
-
-    new_word = NO; // We start outside a word: Meaning we only increment words when we see a word or a tab or a space
+    state = OUT;
 
     while ((c = getchar()) != EOF)
     {
         chars++;
         if (c == '\n')
             lines++;
-        if ((c == '\n' || c == '\t' || c == ' ') && (c == '\n' || (prev_char != ' ' && prev_char != '\t')))
 
-            /* This logic checks for words: first bracket is obvious: for the bracket after
-               the && . ..i have found another bug here, i intended {c == '\n' to allow the first empty line
-               with a newline to be recongonized as a word}
+        if (c == ' ' || c == '\t' || c == '\n')
 
-               * But on the contrary, if we have a case where we have a space before a newline: since  had used OR, it means nothing else is checked and this may count the newline as an extra word which is not the case. Thats a bug that i need to fix.
-
-            */
-            new_word = YES;
-
-        if (new_word == YES)
         {
-            words++;
-            new_word = NO;
+            if (state == IN)
+            {
+                state = OUT;
+                words++;
+            }
         }
-        prev_char = c;
+
+        else
+            state = IN;
     }
 
     printf("Characters:%i\nLines:%i\nWords:%i\n", chars, lines, words);
