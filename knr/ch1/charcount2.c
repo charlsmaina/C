@@ -4,7 +4,7 @@
 #
 # ----------------------------------------code logic ---------------------------------------------------
 # - Any digit in text is internally represented in ascii
-# -It is possible to compare ascii values
+# -It is possible to compare ascii values directly
 
 
 
@@ -19,6 +19,8 @@ int main()
 
     for (wc = 0; getchar() != EOF; ++wc)
         ;
-    printf("%ld\n", wc);
-    printf("%i", 10); // prints a new line which is represented by ascii value 10
+    if ('1' < '9')
+    {
+        printf("%ld\n", wc);
+    }
 }
