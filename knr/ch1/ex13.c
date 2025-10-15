@@ -30,7 +30,7 @@ int main()
     int wordlen[MAXWORD]; // stores word length in index and frequency in the value
     int maxvalue;         // maximum value of wordlen[]. I length with highest frequency
 
-    int len, overflow, state, c;
+    int len_hist, overflow, state, c, len;
 
     state = OUT;
     len = overflow = 0;
@@ -81,35 +81,36 @@ int main()
     {
         if (wordlen[i] > maxvalue)
         {
-            maxvalue = wordlen[i];
+            maxvalue = wordlen[i]; // i want to find the highest frequency so that i can scale the histogram based on this
         }
     }
 
     printf("Word length\t frequency:\tHistogram %c", 10);
-    for (int i = 0; i < MAXWORD; i++)
+
+    for (int i = 1; i < MAXWORD; i++)
     {
         printf("%5d\t\t%5d\t\t", i, wordlen[i]);
 
-        if (wordlen[i] > 0)
+        if (wordlen[i] > 0) // i filter out words that have zero frequency
         {
-            if ((len = wordlen[i] * MAXHIST / maxvalue) <= 0)
+            if ((len_hist = wordlen[i] * MAXHIST / maxvalue) <= 0) // this expression is for scaling the heights of the histogram
             {
-                len = 1;
+                len_hist = 1; // scales decimal len to 1
             }
         }
 
         else
-            len = 0;
+            len_hist = 0;
 
-        while (len > 0)
+        while (len_hist > 0)
         {
             putchar('*');
-            --len;
+            --len_hist;
         }
         putchar('\n');
     }
     if (overflow > 0)
     {
-        printf("There are %d words >= 5%d\n", overflow, MAXWORD);
+        printf("There are %d words >= %5d\n", overflow, MAXWORD);
     }
 }
