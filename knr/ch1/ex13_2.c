@@ -9,7 +9,7 @@ easy to draw the histogram with the bars horizontal; a vertical orientation is m
 #include <stdio.h>
 
 #define MAXHIST 15 // max length of histogram
-#define MAXWORD 11 // maximum size of array{max length of a word}
+#define MAXWORD 11 // maximum size of array {max length of a word}
 #define OUT 0
 #define IN 1
 
@@ -19,6 +19,7 @@ int main()
     int maxvalue;         // maximum value of wordlen[]. I length with highest frequency
 
     int len_hist, overflow, state, c, len;
+    int i, j;
 
     state = OUT;
     len = overflow = 0;
@@ -65,11 +66,46 @@ int main()
     // histogram printing:
 
     maxvalue = 0;
-    for (int i = 1; i < MAXWORD; i++)
+
+    for (i = 1; i < MAXWORD; i++)
     {
         if (wordlen[i] > maxvalue)
         {
             maxvalue = wordlen[i]; // i want to find the highest frequency so that i can scale the histogram based on this
         }
     }
+
+    for (i = MAXHIST; i > 0; i--)
+    {
+        for (j = 1; j < MAXWORD; j++)
+        {
+            if ((wordlen[j] * MAXHIST / maxvalue) >= i)
+            {
+                printf("*");
+            }
+            else
+                printf(" ");
+
+            putchar('\n');
+        }
+    }
+
+    for (i = 1; i < MAXWORD; i++)
+    {
+        printf("%4d", i);
+    }
+
+    putchar('\n');
+
+    for (i = 1; i < MAXWORD; i++)
+    {
+        printf("%4d", wordlen[i]);
+    }
+
+    putchar('\n');
+
+    if (overflow > 0)
+        printf("There are %d words >= %d\n", overflow, MAXWORD);
+
+    return 0;
 }
