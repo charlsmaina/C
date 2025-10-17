@@ -6,57 +6,49 @@ easy to draw the histogram with the bars horizontal; a vertical orientation is m
 #define IN 1
 #define OUT 0
 
-
-int main ()
+int main()
 {
-    int c,overflow,i,state,charcount,a;
+    int c, overflow, i, state, charcount, a;
     int hist[MAXSIZE];
     overflow = 0;
 
-
-    for (int i = 0;i < MAXSIZE;i++)
+    for (int i = 0; i < MAXSIZE; i++)
         hist[i] = 0;
 
     while ((c = getchar()) != EOF)
     {
         if (c == ' ' || c == '\t' || c == '\n')
-            state = OUT ;
+            state = OUT;
         else
-            state = IN ;
+            state = IN;
 
         if (state == IN)
             ++charcount;
         else if (state == OUT)
-              
+
         {
             if (charcount < MAXSIZE)
-                 ++hist[charcount];
+                ++hist[charcount];
             else
-               ++overflow;
-            
-            charcount = 0;
+                ++overflow;
 
+            charcount = 0;
         }
-            
- 
-        
     }
     printf("Char count\t Frequency\n ");
-    for ( i = 0; i < MAXSIZE; i++)
+    for (i = 0; i < MAXSIZE; i++)
     {
-        printf("%d\t\t",i);
+        printf("%d\t\t", i);
 
         if (hist[i] > 0)
         {
-            for ( a = 1; a <= hist[i]; ++a)
-        {
-          printf("#");
-        }
-        
+            for (a = 1; a <= hist[i]; ++a)
+            {
+                printf("#");
+            }
         }
         printf("\n");
-        
     }
 
-    printf("Overflow:%d\n",overflow);
+    printf("Overflow:%d\n", overflow);
 }
