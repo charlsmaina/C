@@ -36,12 +36,12 @@ int main()
     {
         if (chars_fr[i] > 0)
         {
-            if (printable((unsigned char)c))
+            if (printable((unsigned char)i))
             {
-                printf("%c\t%d\n", i, chars_fr[i]);
+                printf("%c\t\t%d\n", i, chars_fr[i]);
             }
             else
-                printf("%#x\t\t%d\n", i, chars_fr[i]);
+                printf("%#X\t\t%d\n", i, chars_fr[i]);
         }
     }
 }
