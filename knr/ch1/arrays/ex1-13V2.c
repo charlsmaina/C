@@ -52,7 +52,7 @@ int main()
 
         if (histogram[i] > 0) // if a certain word count has an occurence of 1 or more
         {
-            printf("%i\t%d", i, histogram[i]); // print the word count
+            printf("%i\t%d\t\t", i, histogram[i]); // print the word count
 
             while (freq <= histogram[i]) //
             {
