@@ -6,7 +6,8 @@ easy to draw the histogram with the bars horizontal; a vertical orientation is m
 
 ---------------------code reedit logic---------------------------------
  - The problem am facing is that i am not able to distiguish between consequtive word separators
- -I dont want to print
+ -What i did is used a state flag to inform me on the beginning of a word, inside of a word and also when i get outside of it
+ -Once outside a word, i print the character count and reset it to zero to start counting the next word
 */
 
 #include <stdio.h>
@@ -20,24 +21,29 @@ int main()
 
     while ((c = getchar()) != EOF)
     {
-        if (c == ' ' || c == '\t' || c == '\n')
-            state = OUT;
-
-        else
-            state = IN;
-
-        if (state == IN)
+        if (c == ' ' || c == '\t' || c == '\n') // ending of a word
         {
-            putchar(c);
-            ++charc;
-        }
-        else
-        {
-            if (charc > 0)
+            if (state == IN)
             {
+                state = OUT;
                 printf(": %d\n", charc);
                 charc = 0;
             }
         }
+
+        else if (state == OUT) // beginning of a word
+        {
+            state = IN;
+            putchar(c);
+            ++charc;
+        }
+
+        else if (state == IN) // inside a word
+        {
+            putchar(c);
+            ++charc;
+        }
     }
+
+    return 0;
 }
