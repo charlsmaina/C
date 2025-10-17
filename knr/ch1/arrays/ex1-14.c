@@ -14,23 +14,39 @@
 */
 
 #include <stdio.h>
+#define ASCII_range 256
+
+int printable(unsigned char c);
+
 int main()
 {
-    int chars_fr[256];
+
     int c, i;
 
-    while ((c == getchar()) != EOF)
+    int chars_fr[ASCII_range] = {0}; // seams this works only when you do declaration and defination and initialization simultaneously
+
+    while ((c = getchar()) != EOF)
     {
         ++chars_fr[c];
     }
 
-    printf("Character:\tFrequency:");
+    printf("Character:\tFrequency:\n");
 
-    for (i = 0; i < 256; i++)
+    for (i = 0; i < ASCII_range; i++)
     {
         if (chars_fr[i] > 0)
         {
-            printf("%c\t%d\n", i, chars_fr[i]);
+            if (printable((unsigned char)c))
+            {
+                printf("%c\t%d\n", i, chars_fr[i]);
+            }
+            else
+                printf("%#x\t\t%d\n", i, chars_fr[i]);
         }
     }
+}
+
+int printable(unsigned char c)
+{
+    return (c >= 32 && c <= 126);
 }
