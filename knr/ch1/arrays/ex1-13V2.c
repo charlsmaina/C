@@ -8,20 +8,18 @@ easy to draw the histogram with the bars horizontal; a vertical orientation is m
 #define OUT 0
 
 #define MAXRANGE 11
-#define IN 1
-#define OUT 0
 
-int main ()
+int main()
 {
-    int c,state,a,i;
+    int c, state, a, i;
     int wordlen;
 
     int histogram[MAXRANGE];
-    for (int  a = 0; a < MAXRANGE - 2; a++)
-            histogram[a] = 0;
+    for (int a = 0; a < MAXRANGE - 1; a++)
+        histogram[a] = 0;
     histogram[MAXRANGE - 1] = 0;
-    
-    state = 0;
+
+    state = OUT;
     wordlen = 0;
 
     while ((c = getchar()) != EOF)
@@ -31,64 +29,52 @@ int main ()
         else
             state = IN;
 
-
-        if (state == IN )
+        if (state == IN)
             ++wordlen;
         else if (state == OUT)
         {
             if (wordlen > 0)
-        {
-             if (wordlen < MAXRANGE - 1 )
-                ++histogram[wordlen];
-            else
-                ++histogram[MAXRANGE -1]; //overflow words stored in last index
-                   
+            {
+                if (wordlen < MAXRANGE - 1)
+                    ++histogram[wordlen];
+                else
+                    ++histogram[MAXRANGE - 1]; // overflow words stored in last index
+            }
+            wordlen = 0;
         }
-        wordlen = 0; 
-
-        }
-        
-        
     }
 
-    printf("len:\tFrequency:\n");
+    printf("len:\tFrequency:\tHistogram\n");
 
-    for (i = 0;i <= MAXRANGE - 2;++i)
+    for (i = 0; i < MAXRANGE - 1; ++i)
     {
-        int freq = 0;
-        
+        int freq = 1;
 
-    if (histogram[i] > 0)
-    {
-        printf("%i\t",i);
-        while (freq < histogram[i])
+        if (histogram[i] > 0) // if a certain word count has an occurence of 1 or more
         {
+            printf("%i\t%d", i, histogram[i]); // print the word count
 
-            printf("#");
-            freq ++;
-        }
-        
-    }
-    
-    else
-        printf("%i\t%i",i,0);
-        printf("\n"); 
-       
-    }
-    
-   printf("OF:\t");
+            while (freq <= histogram[i]) //
+            {
 
-   if (histogram[MAXRANGE - 1] > 0)
-   {
-        for (i = 0; i < histogram[MAXRANGE - 1]; i++)
                 printf("#");
-   }
-   else
+                freq++;
+            }
+        }
+
+        else
+            printf("%i\t%i", i, histogram[i]);
+        printf("\n");
+    }
+
+    printf("OF:\t");
+
+    if (histogram[MAXRANGE - 1] > 0)
+    {
+        for (i = 0; i < histogram[MAXRANGE - 1]; i++)
+            printf("#");
+    }
+    else
         printf("0");
     printf("\n");
-   
-   
-    
-
 }
-
