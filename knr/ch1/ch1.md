@@ -67,7 +67,7 @@ two basic functions are used :
 
 ### Functions
 
-- It is a way to encapsulate some computation which facilitates later usage without worrying about the implementations of the functions.
+- It is a way to encapsulate some computation which facilitates later usage without worrying about the implementations of the computation.
 
 - It is a way of abstracting.
 

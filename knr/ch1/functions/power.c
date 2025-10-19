@@ -1,7 +1,7 @@
 // a program to compute the power  of a given base for a given interger i
 
 #include <stdio.h>
-int power(int base, int n);
+int power();
 
 int main()
 {
@@ -15,13 +15,13 @@ int main()
     return 0;
 }
 
-int power(int bases, int n)
+power() int base, n;
 {
     int i;
     int p = 1;
     for (i = 1; i <= n; i++)
     {
-        p = p * bases; // ie 2 raise 3 = 2 * 2 * 2
+        p = p * base; // ie 2 raise 3 = 2 * 2 * 2
     }
     return p;
 }
