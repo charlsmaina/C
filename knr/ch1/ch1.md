@@ -65,6 +65,16 @@ two basic functions are used :
 
 - To pass an array as an argument in a function: - you just pass its name- what the function sees is the address of the first element in that array
 
+### Functions
+
+- It is a way to encapsulate some computation which facilitates later usage without worrying about the implementations of the functions.
+
+- It is a way of abstracting.
+
+- Abstraction brings about convinience. Think of it like this. Your sterring wheel is a intuitive example of how abstraction works. You give inputs in form of<br>
+  rotations, these rotations go though some abstracted layers for you to have the desired rotation of the wheels. In life , there are alot of functions that abstract<br>
+  things for convinience
+
 ### External variabls and scope:
 
 - Variables defined in main are local to main -That means no other function can have a direct access to them
