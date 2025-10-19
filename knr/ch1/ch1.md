@@ -92,6 +92,14 @@ two basic functions are used :
 
 - The original varibles are passed to the function by pasing a refence to their <br> storage lacation. pointers are used in this case
 
+### Character arrays
+
+- Setting array size in declaration is important for the purpose of setting aside storage
+
+- When a charcter array is passed as an argument to a function - in essence<br> it is the location of the first element in the array that is passed to the function
+
+-
+
 ### External variabls and scope:
 
 - Variables defined in main are local to main -That means no other function can have a direct access to them
