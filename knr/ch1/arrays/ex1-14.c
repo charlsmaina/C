@@ -15,13 +15,14 @@
 
 #include <stdio.h>
 #define ASCII_range 256
+#define MAXHIST 15
 
 int printable(unsigned char c);
 
 int main()
 {
 
-    int c, i;
+    int c, i, max_char, len;
 
     int chars_fr[ASCII_range] = {0}; // seams this works only when you do declaration and defination and initialization simultaneously
 
@@ -30,18 +31,45 @@ int main()
         ++chars_fr[c];
     }
 
-    printf("Character:\tFrequency:\n");
+    max_char = len = 0;
+    for (int i = 0; i < ASCII_range; i++)
+    {
+        if (chars_fr[i] > max_char)
+        {
+            max_char = chars_fr[i];
+        }
+    }
+
+    printf("Character:\tFrequency:\tHistogram\n");
 
     for (i = 0; i < ASCII_range; i++)
     {
+
         if (chars_fr[i] > 0)
         {
             if (printable((unsigned char)i))
             {
-                printf("%c\t\t%d\n", i, chars_fr[i]);
+                printf("%c\t\t%d\t\t", i, chars_fr[i]);
             }
             else
-                printf("%#X\t\t%d\n", i, chars_fr[i]);
+                printf("%#X\t\t%d\t\t", i, chars_fr[i]);
+
+            if ((len = chars_fr[i] * MAXHIST / max_char) <= 0)
+            {
+                len = 1;
+            }
+        }
+        else
+            len = 0;
+
+        while (len > 0)
+        {
+            putchar('*');
+            len--;
+            if (len == 0)
+            {
+                printf("\n");
+            }
         }
     }
 }
