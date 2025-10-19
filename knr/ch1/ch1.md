@@ -74,6 +74,23 @@ two basic functions are used :
 - Abstraction brings about convinience. Think of it like this. Your sterring wheel is a intuitive example of how abstraction works. You give inputs in form of<br>
   rotations, these rotations go though some abstracted layers for you to have the desired rotation of the wheels. In life , there are alot of functions that abstract<br>
   things for convinience
+- Things to keep in mind when it comes to functions:
+
+  - Function prototype<br> This specifies the return type of the function, the function name, and the function parameters together with their types. It is not mandatory to provide the parameter names but it is a capital M must for you to provide the name of the parameter types.
+  - Function defination <br> The function prototype signature must match the defination signature in terms of the return type and the parameters types and obviously the function name
+
+  - Prior ANSI standard <br> Defination and declaration (prototype) were very differnt in that you did not have to specify the function parameter types in the function prototype. Functions with no specified return type were assigned to return an int by default. <br>
+    In the defination the parameter names were declrared before opening the left parenthesis.
+
+### Call by value
+
+- This is a mechanism of passing the argument values to a function where the<br> the argument values are passed in temporary variables and not the originals
+
+- The funtion does not manipulate or alter the originals but works with the <br>temporary variables
+
+### Call by reference
+
+- The original varibles are passed to the function by pasing a refence to their <br> storage lacation. pointers are used in this case
 
 ### External variabls and scope:
 
