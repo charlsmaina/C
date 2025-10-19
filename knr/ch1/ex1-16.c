@@ -1,49 +1,57 @@
 /*Revise the main routine of the longest-line program so it will correctly print
-the length of arbitrary long input lines, and as much as possible of the text.*/
+the length of arbitrary long input lines, and as much as possible of the text.
+
+############################################################################################################################################################
+# ----------------------------------pseudocode--------------------------------------------------
+#
+# -What is the question here - the program is supposed to print the length of arbitrary long lines, and as much as possible of the text
+# - So am simply just to print long lines : i need to have a defination of long lines - in this case it will be lines above a certain length
+#
+#
+
+
+*/
+
 #include <stdio.h>
 #define MAXLINE 1000
 
-int get_line(char line[],int lim);
-void copy(char to[],char from[],int maxlen);
+int get_line(char line[], int lim);
+void copy(char to[], char from[], int maxlen);
 
 int main()
 {
     char line[MAXLINE];
     char longest[MAXLINE];
-    
-    int len,maxlen;
 
-    len = 0 ;
+    int len, maxlen;
+
+    len = 0;
     maxlen = 0;
 
-
-    while((len = get_line(line,MAXLINE)) > 0)
+    while ((len = get_line(line, MAXLINE)) > 0)
     {
-        if(len > maxlen )
+        if (len > maxlen)
         {
             maxlen = len;
-            copy(longest,line,maxlen);
+            copy(longest, line, maxlen);
         }
     }
 
-if (maxlen > 0){
-    printf("Longest line has: %d characters\n",maxlen);
-    printf("Line:%s\n",longest);
+    if (maxlen > 0)
+    {
+        printf("Longest line has: %d characters\n", maxlen);
+        printf("Line:%s\n", longest);
+    }
+    return 0;
 }
-return 0;
 
-}
-
-int get_line(char line[],int lim)
+int get_line(char line[], int lim)
 {
-    int c,i;
+    int c, i;
 
-    
-    for (i = 0; (c = getchar()) != EOF && c != '\n' && i < lim -1; ++i)
+    for (i = 0; (c = getchar()) != EOF && c != '\n' && i < lim - 1; ++i)
     {
         line[i] = c;
-        
-        
     }
     if (c == '\n')
     {
@@ -51,16 +59,14 @@ int get_line(char line[],int lim)
         ++i;
     }
     line[i] = '\0';
-    return i; 
+    return i;
 }
 
-void copy(char to[],char from[],int maxlen)
+void copy(char to[], char from[], int maxlen)
 {
     int i;
     i = 0;
-    while((to[i] = from[i]) != '\0' )// the expression will copy characters until it hits the null terminator
-        if (i < maxlen - 1) // ensure we do not exceed the maximum length
-             ++i;
-
- 
+    while ((to[i] = from[i]) != '\0') // the expression will copy characters until it hits the null terminator
+        if (i < maxlen - 1)           // ensure we do not exceed the maximum length
+            ++i;
 }
