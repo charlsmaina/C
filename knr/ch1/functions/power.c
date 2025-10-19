@@ -15,13 +15,13 @@ int main()
     return 0;
 }
 
-int power(int base, int n)
+int power(int bases, int n)
 {
     int i;
     int p = 1;
     for (i = 1; i <= n; i++)
     {
-        p = p * base; // ie 2 raise 3 = 2 * 2 * 2
+        p = p * bases; // ie 2 raise 3 = 2 * 2 * 2
     }
     return p;
 }
