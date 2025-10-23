@@ -23,7 +23,7 @@ int main()
     {
         int len; // length or parsed line
         if ((len = removeLine(line)) > 0)
-            printf("%sLength after parsing:%d\n", line, len);
+            printf("Length after parsing:%d\n", len);
     }
 }
 
@@ -58,15 +58,26 @@ int removeLine(char line[])
     while (i >= 0 && (line[i] == ' ' || line[i] == '\t'))
         i--;
 
+    /*the two decrements eleminates cases where we have 3 empty blank lines : ie
+    - Character count is four
+    - Once nwe line is found - character count is set to 3
+    - First iteration sets i to 2
+    - Second iteration sets i to 1
+    - Third iteration sets i to 0
+
+
+    */
+
     if (i >= 0)
     {
-        //
+
         i++;
         line[i] = '\n';
         i++;
         line[i] = '\0';
     }
-    return i;
+
+        return i;
 
     /*
     How does this removeLine function work?
