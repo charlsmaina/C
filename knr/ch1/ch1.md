@@ -113,3 +113,7 @@ two basic functions are used :
 - Extern keyword is used in external variables to make them accessible to other files belonging to the same program. This is for cases where you have a program spanning multiple files
 
 - External variables must be defined outside of any function and must be declared explicitely inside each function that wants to access it
+
+#### Reasons why excessive use of external variables is not good
+
+- Leads to programs with data connections that are not obvious henced programs are hard to modify.
