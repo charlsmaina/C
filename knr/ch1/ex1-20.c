@@ -9,6 +9,8 @@ Should n be a variable or a symbolic parameter?
 # - So the question is about replacing tabs with appropriate blanks spaces:
 # - So i need to read a line and then parse that line
 # - During parsing - when i come across a tab - i will cause a function detab to place the blank spaces instead of placeing the tabs
+# - The main problem with placing tabs is in how tabs work, tabs are placed based in column position in a tabwidth, lets say my tabwidth is 8 and a tab is in position 0, the tab will be placed at position 8
+# - So i have to keep trck of the column am in in a line and check how many columns are remaining to get to the tabwidth
 #
 # - n should be a symbolic constant since am replacing fixed tabs stop
 ###############################################################################################################################################################################
