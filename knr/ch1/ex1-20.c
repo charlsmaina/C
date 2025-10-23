@@ -12,35 +12,38 @@ Should n be a variable or a symbolic parameter?
 # - The main problem with placing tabs is in how tabs work, tabs are placed based in column position in a tabwidth, lets say my tabwidth is 8 and a tab is in position 0, the tab will be placed at position 8
 # - So i have to keep trck of the column am in in a line and check how many columns are remaining to get to the tabwidth
 #
-# - n should be a symbolic constant since am replacing fixed tabs stop
+# - n should be a symbolic constant since am replacing fix
 ###############################################################################################################################################################################
 */
 
 #include <stdio.h>
-#define BLANKS 4
+#define TABINC 8
 #define LIMIT 150
 
 int readline(char line[], int lim);
-void detab(void);
+int detab(int column);
 
 int main()
 {
     int len, i;
     char line[LIMIT];
+    int column;
 
     len = 0;
     while ((len = readline(line, LIMIT)) > 0)
     {
+        column = 1;
         for (i = 0; i < len; i++)
         {
             if (line[i] != '\t')
             {
                 putchar(line[i]);
+                column++;
             }
 
             else if (line[i] == '\t')
             {
-                detab();
+                column = detab(column);
             }
         }
     }
@@ -57,26 +60,27 @@ int readline(char line[], int lim)
             line[j] = c;
             j++;
         }
+        if (c == '\n')
+        {
+            line[j] = '\n';
+            j++;
+            i++;
+        }
     }
 
-    if (c == '\n')
-    {
-        line[j] = '\n';
-        j++;
-        i++;
-    }
     line[j] = '\0';
 
     return i;
 }
 
-void detab(void)
+int detab(int column)
 {
-    int i;
-    i = 0;
-    while (i < BLANKS)
+    int spaces, j;
+    spaces = TABINC - ((column - 1) % TABINC);
+    for (j = 0; j < spaces; j++)
     {
         putchar(' ');
-        i++;
+        column++;
     }
+    return column;
 }
