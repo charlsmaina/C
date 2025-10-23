@@ -21,25 +21,32 @@ int main()
 
     while ((len = lineGet(line, LIMIT)) > 0)
     {
-        printf(" Original line:: %s\n", line);
+        printf(" Original line:: %s", line);
         reverse(line);
     }
 }
 int lineGet(char line[], int lim)
 {
-    int c, i;
-    i = 0;
-    while ((c = getchar()) != EOF && c != '\n' && i < lim - 1)
+    int c, i, j;
+    j = 0;
+
+    for (i = 0; (c = getchar()) != EOF && c != '\n'; i++)
     {
-        line[i] = c;
+        if (j < lim - 2)
+        {
+            line[j] = c;
+            j++;
+        }
+    }
+
+    if (c == '\n')
+    {
+        line[j] = '\n';
+        j++;
         i++;
     }
-    if (c == 'n')
-    {
-        line[i] = '\n';
-        i++;
-    }
-    line[i] = '\0';
+    line[j] = '\0';
+
     return i;
 }
 
@@ -50,10 +57,10 @@ void reverse(char line[])
     int tempV;
     for (i = 0; line[i] != '\0'; i++)
         ;
-    i--;
+    i--; // backs off \0 position: a line cannot be printed if it begins with end of sring marker
 
     if (line[i] == '\n')
-        i--;
+        i--; // backs off to leave newline intact
 
     int j = 0;
 
