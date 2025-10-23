@@ -11,7 +11,7 @@ pseudocode:
 #include <stdio.h>
 
 #define LIMIT 100
-int lineGet(char line[],int lim);
+int lineGet(char line[], int lim);
 void reverse(char line[]);
 
 int main()
@@ -19,23 +19,20 @@ int main()
     int len;
     char line[LIMIT];
 
-    while ((len = lineGet(line,LIMIT)) != 0 )
+    while ((len = lineGet(line, LIMIT)) > 0)
     {
-      printf(" Original line:: %s\n",line);
-      reverse(line);
-      
+        printf(" Original line:: %s\n", line);
+        reverse(line);
     }
-    
 }
-int lineGet(char line[],int lim)
+int lineGet(char line[], int lim)
 {
-    int c,i;
+    int c, i;
     i = 0;
-    while ((c = getchar()) != EOF && c != '\n' && i < lim -1  )
+    while ((c = getchar()) != EOF && c != '\n' && i < lim - 1)
     {
         line[i] = c;
-        i++ ;
-
+        i++;
     }
     if (c == 'n')
     {
@@ -44,26 +41,37 @@ int lineGet(char line[],int lim)
     }
     line[i] = '\0';
     return i;
-    
-    
 }
 
-void reverse( char line[])
+void reverse(char line[])
 {
-    printf(" Reversed line::");
+    printf(" Reversed line:: ");
     int i;
-    for (i = 0; line[i] != '\0'; i++);
-    
-    while (i >= 0)
-    {
-        putchar(line[i]);
+    int tempV;
+    for (i = 0; line[i] != '\0'; i++)
+        ;
+    i--;
+
+    if (line[i] == '\n')
         i--;
+
+    int j = 0;
+
+    while (j < i)
+    {
+        tempV = line[j];
+
+        line[j] = line[i];
+        line[i] = tempV;
+
+        i--;
+        j++;
     }
-    printf("\n");
-   
-    
-    
+
+    printf("%s", line);
 }
 
-
-
+/*
+ The version works but its very mechanical
+- I want to make it possible to print line as a string and not to print isolated characters - so that means reversing the array in totality
+*/
