@@ -21,7 +21,7 @@ int main()
 
     while ((len = lineGet(line, LIMIT)) > 0)
     {
-        printf(" Original line:: %s", line);
+        printf(" Original line: %s", line);
         reverse(line);
     }
 }
@@ -52,11 +52,29 @@ int lineGet(char line[], int lim)
 
 void reverse(char line[])
 {
-    printf(" Reversed line:: ");
+
     int i;
     int tempV;
     for (i = 0; line[i] != '\0'; i++)
         ;
+
+    printf(" Reversed line: ");
+
+    /*
+    -------------------- This works but is abit mechanical -  reversing a string in entirety is more desirable that charactrwis reversing-----------
+    i = i - 2;
+
+
+
+    while (i >= 0)
+    {
+        printf("%c", line[i]);
+        i--;
+    }
+    printf("\n");
+
+    */
+
     i--; // backs off \0 position: a line cannot be printed if it begins with end of sring marker
 
     if (line[i] == '\n')
@@ -79,6 +97,7 @@ void reverse(char line[])
 }
 
 /*
- The version works but its very mechanical
-- I want to make it possible to print line as a string and not to print isolated characters - so that means reversing the array in totality
+
+- Here the string is printable as a string and hence works -
+-
 */
