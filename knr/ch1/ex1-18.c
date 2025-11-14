@@ -31,7 +31,7 @@ int readLine(char line[], int lim)
 {
     int c, i;
     i = 0;
-    while ((c = getchar()) != EOF && c != '\n' && i < lim - 2) // I parsed on a per line basis so i had to jump out of the loopat the end of each line
+    while ((c = getchar()) != EOF && c != '\n' && i < lim - 2) // I parsed on a per line basis so i had to jump out of the loop at the end of each line
     {
         line[i] = c;
         i++;
@@ -77,7 +77,7 @@ int removeLine(char line[])
         line[i] = '\0';
     }
 
-        return i;
+    return i;
 
     /*
     How does this removeLine function work?
@@ -87,5 +87,10 @@ int removeLine(char line[])
      ------------------------------There is one thing am still yet to resolve------------------------------
 
      -  So am i really deleting the spaces or am changing the indexes and choosing where the string ends by transfering the newline and end of string marker to point before the blanks.
+     - So the reality is that am not really deleting the blank spaces except the first two that are near (adjacent) the non blank or tab character. So am just shifting the string terminator and the new line
+     - To really delete that memory block that contains the blanks and the tabs and the ealier newline and string terminator, i will need to use a dynamic buffer that allocates memory through malloc and reallocates through realloc to resize the memory
+     - In C array size are determined at compile time and once set cannot be changed at run time
+
+
     */
 }
