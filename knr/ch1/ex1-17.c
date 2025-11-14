@@ -12,7 +12,7 @@
 */
 
 #include <stdio.h>
-#define LIMIT 1000 // limit of charcters in an array
+#define LIMIT 1000 // limit of characters in an array
 #define MIN 80
 
 int linesget(char lines[], int lim); // function defination  - read a line and return its length

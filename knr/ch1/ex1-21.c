@@ -34,7 +34,26 @@ int main()
             {
                 tabc++;
                 blanksc++;
+                position++;
             }
         }
+        else
+        {
+            for (; tabc > 0; tabc--)
+            {
+                putchar('\t');
+            }
+            if (c = '\t')
+            {
+                blanksc = 0;
+            }
+            else
+            {
+                for (; blanksc > 0; blanksc--)
+                {
+                    putchar(' ');
+                }
+            }
+                }
     }
 }
