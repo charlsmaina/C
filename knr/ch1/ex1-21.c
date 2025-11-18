@@ -66,7 +66,7 @@ int main()
 
             - Since tabs are essentially calculated blanks:, imagine a scenario where we  have tab being interpreted as blanks,but it will eventually be converted to a tab, why reset blanks to zero while the converting logic takes care of that??
 
-            -Understood: is
+            -Understood: so  '\t' is taken as non blank character and hence not parsed into corresponding spaces, so am not getting how it wipes out blans
             */
             {
                 blanksc = 0;
