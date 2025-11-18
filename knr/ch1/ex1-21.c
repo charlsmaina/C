@@ -9,7 +9,7 @@ preference?
 # ------------------------------------------------------pseudocode------------------------------------------------------------------------------------
 # - The problem is about replacing blanks by minimum number of tabs and blanks to achieve the same spacing
 # - Previously entab taught me the concept of tab stops.. where the number of spaces to replace the tab space are determined by the number of spaces remaining to reach a tab    #  stop. We do tabwidth - column % tabwidth
-# - it seams , i
+# - Here i have to keep track of blanks and group them into bundles of TABWIDTH for i to insert a tab
 
 
 
@@ -18,42 +18,75 @@ preference?
 #define TABWIDTH 8
 int main()
 {
-    int position, c, tabc, blanksc;
-    position = 1;
+    int pos, c, tabc, blanksc;
 
-    for (int i = 0; (c = gechar()) != EOF; i++)
+    tabc = blanksc = 0;
+
+    for (pos = 1; (c = gechar()) != EOF; pos++) // am reading characterwise:
     {
         if (c == ' ')
         {
-            if (position % TABWIDTH != 0)
+            if (pos % TABWIDTH != 0)
+            /*What this condition is checking is whether am in a position that is a multiple of the TABWIDTH. If not so i increase the blanks , and if so, i increase the tabs count. My previous confusion was  when i encounter a space at a multiple of TABWIDTH position, say like 8, and i increae the tab counts while in reality it was just a space. FYI, putting  a tab would print 8 spaces
+
+            : after evaluating  how spaces are inserted from tabs:
+            The formula is:
+              - spaces = TABWIDTH - ((pos - 1) % TABWIDTH)
+
+              - So even here, when am in position 8, and i encounter a space
+              - The tab that i increment will have to be converted to corresponding spaces using the above formula
+              - And since am in position 8, only a single space will be appended , since its 8 - 7
+
+              - Lets take another scenario where am in position 16 and the last 3 characters have been spaces:, i will increment the tabs count and reset the blanks count to zero: so the point of confusion is who manages the position of the output console: the system manages that, so i parse my side using the columns and wait for the system to manage its side
+
+              - Like if the last point where putchar() was called was in column 13, then when i print a tab ( to replace the three blanks in 14,15,16 columns), then the tab is converted to corresponding spaces using the above formula, which as it turns out to be three spaces to reach column 16.
+
+
+
+
+            */
             {
-                blanksc++;
-                position++;
+                ++blanksc;
             }
             else
             {
+                blanksc = 0;
                 tabc++;
-                blanksc++;
-                position++;
             }
         }
         else
         {
             for (; tabc > 0; tabc--)
             {
-                putchar('\t');
+                putchar('\t'); // print out the tabs
             }
-            if (c = '\t')
+            if (c == '\t')
+            /*
+            Forgets the blanks: HOW??
+
+            - Since tabs are essentially calculated blanks:, imagine a scenario where we  have tab being interpreted as blanks,but it will eventually be converted to a tab, why reset blanks to zero while the converting logic takes care of that??
+
+            -Understood: is
+            */
             {
                 blanksc = 0;
             }
             else
             {
-                for (; blanksc > 0; blanksc--)
+                for (; blanksc > 0; --blanksc)
                 {
                     putchar(' ');
                 }
             }
-                }
+            putchar(c);
+            if (c == '\n')
+            {
+                pos = 0;
+            }
+            else if (c == '\t')
+            {
+                pos = pos + (TABWIDTH - (pos - 1) % TABWIDTH) - 1;
+            }
+        }
     }
 }
