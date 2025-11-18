@@ -47,8 +47,15 @@ int readLine(char long_line[], int lim)
 
 {
     int c, i;
-    for (i = 0;; i++)
+    for (i = 0; i < lim - 2 && (c = getchar()) != EOF && c != '\n'; i++)
     {
-        /* code */
+        long_line[i] = c;
     }
+    if (c == '\n')
+    {
+        long_line[i] = c;
+        i++;
+    }
+    long_line[i] = '\0';
+    return i;
 }
