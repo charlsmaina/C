@@ -26,7 +26,7 @@ before the specified column.
 #define COLUMN_LIM 50
 
 int readline(char long_line[], int lim);
-void fold(char folded[], int lim);
+void parse_line(char folded[], int lim);
 
 int main()
 {
@@ -36,9 +36,16 @@ int main()
 
     while (len = readline(long_line, LONG_LIM) > 0)
     {
-        for (int i = 0; i < COLUMN_LIM; i = i + COLUMN_LIM)
+        int i;
+        for (i = 0; i <= len; i++)
         {
-            fold(folded, COLUMN_LIM);
+            if ((i % COLUMN_LIM) == 0)
+            {
+                folded[i] = long_line[i];
+                parse_line(folded, COLUMN_LIM)
+            }
+            else
+                folded[i] = long_line[i];
         }
     }
 }
@@ -58,4 +65,12 @@ int readLine(char long_line[], int lim)
     }
     long_line[i] = '\0';
     return i;
+}
+
+void parse(char folded[], int lim)
+{
+    if (folded[lim - 2] != ' ' || folded[lim - 1] != '\t')
+    {
+        folded[lim] = '\n';
+    }
 }
