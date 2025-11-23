@@ -42,7 +42,7 @@ int main()
             if ((i % COLUMN_LIM) == 0)
             {
                 folded[i] = long_line[i];
-                parse_line(folded, COLUMN_LIM)
+                parse_line(folded, COLUMN_LIM);
             }
             else
                 folded[i] = long_line[i];

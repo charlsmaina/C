@@ -15,5 +15,7 @@
 
 int main()
 {
-    printf("Size of min char = %d\n", -(char)((unsigned char)~0 >> 1));
+    printf("min size of signed char = %d\n", -(char)((unsigned char)~0 >> 1));
+    - // when i cast to char is it signed or unsigned?
+        printf("Max size of signed char = %d\n", (char)((unsigned char)~0 >> 1));
 }
