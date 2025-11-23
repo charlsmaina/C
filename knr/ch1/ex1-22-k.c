@@ -1,15 +1,16 @@
-P /*
- Write a program to 'fold' long input lines into two or more shorter lines after the last non-blank character that occurs before the n-th column of input. Make sure your program does something intelligent with  very long lines , and if there are no blanks or tabs before specified column
- */
+/*
+Write a program to 'fold' long input lines into two or more shorter lines after the last non-blank character that occurs before the n-th column of input. Make sure your program does something intelligent with  very long lines , and if there are no blanks or tabs before specified column
+*/
 
 #include <stdio.h>
 #define MAXCOL 10 // maximum column of input
 #define TABINC 8  // Tab increment size
 
-    char line[MAXCOL]; // input line
+char line[MAXCOL]; // input line
 
-int exptab(int pos);
-int findblnk(int pos);
+int exptab(int pos);   // for updating the position of current column: tabs have a unique behaviour
+int findblnk(int pos); // For finding blanks between the last non -blank character and the column values
+
 int newpos(int pos);
 void printl(int pos);
 

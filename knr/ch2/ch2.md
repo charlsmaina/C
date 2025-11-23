@@ -82,7 +82,12 @@ How it works:
 - Example - i tried to create a a character array of size 1000000 in the main - main is allocated a few MBs
 ```
 
-- '\000' - used to represent an arbitrary octal number
+- '\000' - used to represent an arbitrary byte sized bit pattern where 000 is one to three octal digits
+
+- '\xhh" - Used to represent an arbitrary byte sized bit pattern - where hh is one or two hexadecimal digits
+
+- Both octal and hexadecimal can be extended by use of UL or U or L
+
 - '\xhh -Reps an abitrary hexadecimal number -hh is the hexadecimal number
 
 # Complete set of escape characters
@@ -121,6 +126,7 @@ Automatic variables for which is no explicit initializer have undefined(garbage 
 ie: const char msg[] = "warning"
 -You can also use const when passing an array as an argument to a function to show that the function is not changing the contents f that array
 ie. int strlen (const char [])
+P
 
 # ARITHMETIC OPERATORS
 
