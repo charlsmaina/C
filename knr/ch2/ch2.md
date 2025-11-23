@@ -43,11 +43,36 @@
   - <limits.h>
   - <float.h>
 
-- The sizes of the various data types sizes are spsecified in the <limit.h>
+- The sizes of the various data types sizes are specified in the <limit.h> as required by the ANSI C stardard. This ranges in the different sizes are machine dependent
 
 - ul -unsigned long
 
 - A character constant is an interger written as a character within single quotes
+
+- So in limit.h
+
+- use an expression such as :
+
+```
+printf("Max size of int = %d\n", INT_MAX) // this prints the size of int in that machine
+```
+
+- Another approach would be to us bit shifting to determine the sizes of the various data types:
+
+- Example:
+
+```
+printf("Size of min signed char = %d\n",-char(unsigned char) ~0 >> 1)
+
+How it works:
+
+- A zero is converted to ones depending on the size of unsigned char
+
+- Shift to the right one position to clear the sign bit
+
+- Convert back to char
+
+```
 
 ## Segmentation fault
 
