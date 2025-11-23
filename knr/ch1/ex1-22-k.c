@@ -13,7 +13,7 @@ int findblnk(int pos);
 int newpos(int pos);
 void printl(int pos);
 
-main()
+int main()
 {
     int c, pos;
     pos = 0;
@@ -36,6 +36,7 @@ main()
             pos = newpos(pos);
         }
     }
+    return 0;
 }
 
 /*Printl : print line until pos column*/
@@ -71,7 +72,7 @@ int exptab(int pos)
 }
 
 // findblnk : find blanks's position
-int findblank(int pos)
+int findblnk(int pos)
 {
     while (pos > 0 && line[pos] != ' ')
     {
