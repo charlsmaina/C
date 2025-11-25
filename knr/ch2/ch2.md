@@ -170,33 +170,45 @@ Integer division truncates any fractional part
 
 - ! is called th unary negation operator -Converts a non-zero operand to 0 and a zero operand to 0 {Review it latter to see what this means?}
 
-  -<ctype.h> - provides set of functions that provide tests and strings conversions indepedent of the character set
+- <ctype.h> - provides set of functions that provide tests and strings conversions indepedent of the character set
 
-  -Whether char is signed or unsigned is machine / compiler/ architecture dependent
-  -For portability and to escape the umbinguity of char in differnt machines[whether signed or unsigned] specify signed or unsigned if non character data is to be stored in char variables
+## Conversion rules
 
--in implicit arithmetic conversions -the lower operand is converted to the 'higher one' before the operation proceeds.
--Float are not automatically converted to double - saves space and also save time - double-precision arithmetic is expensive
--\*\*
+- Conversion considers whether we loose information during the conversion process. Like in converting int to float - we loose none but in the converse , its possible to loose info
 
-````Conversions are more difficult when unsigned operand are involved.??
+- In situations where we try to do conversions where we loose info, we re not prohibited but warnings are raised
 
-Conversion rules are more complicated when unsigned operands are involved. The problem
-is that comparisons between signed and unsigned values are machine-dependent, because they
-depend on the sizes of the various integer types. For example, suppose that int is 16 bits and
-long is 32 bits. Then -1L < 1U, because 1U, which is an unsigned int, is promoted to a
-signed long. But -1L > 1UL because -1L is promoted to unsigned long and thus appears
-to be a large positive number.
+-
 
+- Whether char is signed or unsigned is machine / compiler/ architecture dependent
 
+- C defination guarantees that the characters in a machine's standard printing character set will always be positive quantities
 
--When a float is converted into a double - whether the value is rounded off or truncated is implementation dependent.
--Type conversion also takes place when a function is called and arguments are passed to it.In the absence of a function prototype - char and short become float while float becomes double.
+- For portability and to escape the umbinguity of char in differnt machines[whether signed or unsigned] specify signed or unsigned if non character data is to be stored in char variables
 
-:cast: -explicit type conversion
+- in implicit arithmetic conversions -the lower operand is converted to the 'higher one' before the operation proceeds.
+
+- Float are not automatically converted to double - saves space and also save time - double-precision arithmetic is expensive
+
+- Conversions are more difficult when unsigned operand are involved.?? how
+
+- Conversion rules are more complicated when unsigned operands are involved. The problem is that comparisons between signed and unsigned values are machine-dependent, because they
+  depend on the sizes of the various integer types. For example, suppose that int is 16 bits and long is 32 bits. Then -1L < 1U, because 1U, which is an unsigned int, is promoted to a
+  signed long. But -1L > 1UL because -1L is promoted to unsigned long and thus appears to be a large positive number.
+
+- When a float is converted into a double - whether the value is rounded off or truncated is implementation dependent.
+
+- Type conversion also takes place when a function is called and arguments are passed to it.In the absence of a function prototype - char and short become float while float becomes double.
+
+- :cast: -explicit type conversion
+
 (type name.ie double) expression : converts the expression to the type specified.
 
 -Example sqrt((double) 4) -in a case where sqrt expects a double as its argument.
+
+- If a function prototype is declared - there is automatic coercion of the arguments passed to the function to reflect the type defined in th function prototype
+
+## Increment and decrement operators
 
 -Decrement operators (++ , --). Can be postfix or prefix.
 
@@ -204,7 +216,10 @@ to be a large positive number.
 -n-- - n is increased later after use
 
 Example:
-``` if n = 5 ```
-``` x = n++ sets x to 5 ```
-```x = ++n sets x to 6 ```
-````
+`if n = 5`
+`x = n++ sets x to 5`
+`x = ++n sets x to 6 `
+
+```
+
+```
