@@ -90,67 +90,86 @@ How it works:
 
 - '\xhh -Reps an abitrary hexadecimal number -hh is the hexadecimal number
 
-# Complete set of escape characters
+- Concept of indepedence - The war character sets work - is that we work with character constants - we dont care how their internnl representation is done. A character constant '0' may be represented as 48 in one machine and another value in another machine. That is not our concern when writing programs
 
-      -\n - new line
-      -\t -horizontal tab
-      -\v -vertical tab
-      -\' -single quote
-      -\" -double quotes
-      -\r -carriage return
-      -\a -alarm bell
-      -\b -backspace
-      -\f -formfeed
-      -'\000 -octal number
-    -'\xhh -hexadecimal number
-      -\\ -backslash
-      -\? question mark
-      -'\0' -has a valuse of 0
+## Complete set of escape characters
 
--COnstant expression - an expression that involves only constants
+- \n - new line
+- \t -horizontal tab
+- \v -vertical tab
+- \' -single quote
+- \" -double quotes
+- \r -carriage return
+- \a -alarm bell
+- \b -backspace
+- \f -formfeed
+- '\000 -octal number
+- '\xhh -hexadecimal number
+- \\ -backslash
+- \? question mark
+- '\0' -has a values of 0
 
--A string constant or literal is a sequence of zero or more characters surrounded by double quotes
--Enumeration constant - a list of constant integer values
--If not all values are specified, unspecified values continuethe proression from the last specified value.ie...if you only specified the first value to be 1, the second value will be 2 , the third will be 3 and so forth.First value is 0, then 1 then 2, unless explicit values are supplied
--Example : enum boolean (NO, YES)
--Enum are a convinient way to associate constant values with names - similar to define except that in enum, the values can be generated for you
+- COnstant expression - an expression that involves only constants
+
+- A string constant or literal is a sequence of zero or more characters surrounded by double quotes
+
+- strlen(s) - returns length of a string s (does not count the null)
+
+- Remember - any string constant is an array - of characters terminated witht the null ('\0')
+
+- Enumeration constant - a list of constant integer values
+
+-If not all values are specified, unspecified values continue the proression from the last specified value.ie...if you only specified the first value to be 1, the second value will be 2 unless explicit values are supplied
+
+- Example : enum boolean (NO, YES)
+
+- Enum are a convinient way to associate constant values with names - similar to define except that in enum, the values can be generated for you
+
+- What is the difference between enumurations constant and define :??
+  (How i understand define - is that you have a variable that is associated with a given constant value: in its usge you cannot check if it agrees with the type requirement for its usage instance
+  : Now for enumeration, you are having a larger variable that has values associated with it , and this subvalues cn have subvariables that refer to them the way define does)
+
 -Enum variables may be declared - offering a mechanism to check if what is stored is valid/may or may not check
 
-# Declaration -specifies type - a variable can be initialized in its declaration
+## Declaration -specifies type - a variable can be initialized in its declaration
 
--External and sttic variables are initilized to zero by default
-Automatic variables for which is no explicit initializer have undefined(garbage values
-)
+- External and static variables are initilized to zero by default
 
--const qualifier specifies that the particular value of a variable is not to change
-ie: const char msg[] = "warning"
--You can also use const when passing an array as an argument to a function to show that the function is not changing the contents f that array
-ie. int strlen (const char [])
-P
+- Initialization - Specifying the values - equal sign is used
 
-# ARITHMETIC OPERATORS
+- Automatic variables for which there is no explicit initializer have undefined(garbage values)
+
+- const qualifier specifies that the particular value of a variable is not to change
+  ie: const char msg[] = "warning"
+
+- You can also use const when passing an array as an argument to a function to show that the function is not changing the contents of that array
+  ie. int strlen (const char [])
+
+## ARITHMETIC OPERATORS
 
 Integer division truncates any fractional part
 
 - % modulus operator: -produces the remaider when a number is divided with another = 0 for even divided by 2
 - Ie A year is leap if it is divisible by 4 and not 100 except that ears divisible b 400
-  +-/\*%:
 
-# Relational and logical operators:
+- There re five binary arithmetic operators: + , - , / , \* , %
 
-Relational operators: > >= < <= : alll have the same precedence
+## Relational and logical operators:
 
-Below them in precedence are : == != {equality operators}
+- Relational operators: (> >= < <=) : all have the same precedence
 
-Relational operators have lower precedence than arithmetic operators
+- Below them in precedence are : (== !=) {equality operators}
 
-Logical operators: || && : evaluated from left to right and evaluation stops as the truth or falsehood of the result is known
+- Relational operators have lower precedence than arithmetic operators
 
--&& has higher precedence than || and both are lower in precedence than equality and relational operators.
+- Logical operators: || && : evaluated from left to right and evaluation stops as the truth or falsehood of the result is known
 
--!= has higher precedence than =
+- && has higher precedence than || and both are lower in precedence than equality and relational operators.
 
-- ! =unary negation operator -Converts a non-zero operand to 0 and a zero operand to 0
+- != has higher precedence than =
+
+- ! is called th unary negation operator -Converts a non-zero operand to 0 and a zero operand to 0 {Review it latter to see what this means?}
+
   -<ctype.h> - provides set of functions that provide tests and strings conversions indepedent of the character set
 
   -Whether char is signed or unsigned is machine / compiler/ architecture dependent
