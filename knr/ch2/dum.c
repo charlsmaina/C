@@ -32,8 +32,8 @@ int main()
         printf("%c\n", c);
 
     printf("%d\n", 'a');
-    printf("%d\n,", 'A');
-    printf("%d\n", 'B' - 'b');
+    printf("%d\n", 'A');
+    printf("%d\n", 'b' - 'B');
 
     return 0;
 }
