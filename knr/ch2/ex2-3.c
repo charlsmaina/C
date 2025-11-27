@@ -43,15 +43,7 @@ int main()
     hx[4] = '0';
     hx[5] = '0';
 
-    for (int i = 0; i < 16; i++)
-    {
-        if (hx[5] <=)
-        {
-            /* code */
-        }
-
-        printf("The decimal equivalent of %s is :%d\n", hx, htoi(hx));
-    }
+    printf("The decimal equivalent of %s is :%d\n", hx, htoi(hx));
 }
 
 int htoi(char hx[])
