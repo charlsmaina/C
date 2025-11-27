@@ -10,6 +10,13 @@ pseudocode:
  to convert to decimal or integer: = number at position 0 * 16 ^ 0 + number at position 1 * 16^1 + ...until we get to x
  . So to get each position we must take the number and strip off the 0x or 0X so as to process it well:
 
+
+ - ----------------------- i want to modify this program--------------------
+
+ - I want the program to convert hexadecimal numbers to decimal digits - the program should generate the hexadecimal numbers sequentially
+ - I will write another program - let this remain intact
+ - check out ex2-3V2.c
+
 */
 
 #include <stdio.h>
@@ -36,13 +43,14 @@ int main()
     hx[4] = '0';
     hx[5] = '0';
 
-    for (int i = 0; i < 50; i++)
+    for (int i = 0; i < 16; i++)
     {
-        for (int i = 2; i < LIMIT; i++)
+        if (hx[5] <=)
         {
-            hx[i]++;
+            /* code */
         }
-        printf("The decimal equivalent is :%d\n", htoi(hx));
+
+        printf("The decimal equivalent of %s is :%d\n", hx, htoi(hx));
     }
 }
 
