@@ -212,14 +212,19 @@ Integer division truncates any fractional part
 
 -Decrement operators (++ , --). Can be postfix or prefix.
 
--++n - n is increased before it is used
--n-- - n is increased later after use
+- Depending on context ++n and n++ can have two different meanings
+
+- In the former - n is increased before it is used while in the latter n is increased later after use
 
 Example:
-`if n = 5`
-`x = n++ sets x to 5`
-`x = ++n sets x to 6 `
 
 ```
 
+ if n = 5
+ x = n++ sets x to 5
+ x = ++n sets x to 6 `
+
 ```
+
+- in both cases n becomes 6
+- Increment and decrement operators can only be applied to variables - an expression like (i+j) ++ is illegal
