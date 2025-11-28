@@ -11,15 +11,6 @@
         - So how do i transit from 9 to A ,
 #
 #
-#
-#
-#
-#
-#
-#
-#
-
-
 */
 
 #include <stdio.h>
@@ -37,7 +28,7 @@ int main()
 
     for (int x = 0; x <= 256; x++)
     {
-        printf("Decimal:  %d  Hexadecimal: %s\n", x, hex);
+        printf("Decimal:  %d  Hexadecimal:  %s:  Back to decimal : %d\n", x, hex, vhex(hex));
         increment(hex);
     }
 }
@@ -68,4 +59,42 @@ void increment(char hex[])
             hex[i] = '0';
         }
     }
+}
+
+int vhex(char hex[])
+{
+    int hex_value = 0;
+    int char_val;
+
+    for (int i = 2; i < LIMIT; i++)
+    {
+        char_val = char_value(hex[i]);
+        hex_value += _raise_16(LIMIT - 1 - i) * char_val;
+    }
+    return hex_value;
+}
+int char_value(char c)
+{
+    int decimal_value;
+    if (c >= '0' && c <= '9')
+    {
+        decimal_value = c - '0';
+    }
+
+    if (c >= 'A' && c <= 'F')
+    {
+        decimal_value = c - 'A' + 10;
+    }
+
+    return decimal_value;
+}
+
+int _raise_16(int n)
+{
+    int result = 1;
+    for (int i = 0; i < n; i++)
+    {
+        result = result * 16;
+    }
+    return result;
 }
