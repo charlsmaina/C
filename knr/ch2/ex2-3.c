@@ -108,3 +108,8 @@ int _16raise(int n)
 
     return result;
 }
+
+/*
+This  code appears to be very fuzy - it needs review
+
+*/
