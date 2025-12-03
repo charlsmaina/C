@@ -16,38 +16,32 @@ pseudocode:
 
 #include <stdio.h>
 
-int setbits(unsigned int x,int p,int n,unsigned int y);
+int setbits(unsigned int x, int p, int n, unsigned int y);
 int main()
 {
     int b;
-     b = setbits(123,6,3,77);
-     printf("X = %d\n",b);
-     return 0;
+    b = setbits(123, 6, 3, 77);
+    printf("X = %d\n", b);
+    return 0;
 }
 
-int setbits(unsigned int x,int p,int n,unsigned int y)
+int setbits(unsigned int x, int p, int n, unsigned int y)
 
+{
+    int bits_of_interest = (y >> (p + 1 - n)) & ~(~0 << n);
+    // y = >> (p +1 -n) : moves the group of bits we are interested in into the rightmost end by right shifting.ie. 00000101
+    //~0 << n - Shifts 1 n times to create a mask with n zeroes at the rightmost end = 11111000
+    // ~ inverts the bit mask to have a bit mask that clears all other bits except the ones under the bits of interest positions: ie positions with ones,,ie 00000111
+    // & - sets the bits of interest at the n positions
 
-{  
-   int  bits_of_interest = ( y >> (p + 1 - n)) & ~( ~0 << n);
-   // y = >> (p +1 -n) : moves the group of bits we are interested in into the rightmost end by right shifting.ie. 00000101
-   //~0 << n - Shifts 1 n times to create a mask with n zeroes at the rightmost end = 11111000
-   // ~ inverts the bit mask to have a bit mask that clears all other bits except the ones under the bits of interest positions: ie positions with ones,,ie 00000111
-   // & - sets the bits of interest at the n positions
+    printf("Bits of interest:%d\n", bits_of_interest);
 
-   printf("Bits of interest:%d\n",bits_of_interest);
+    int unsigned x_cleared = (x & ~((1 << n) - 1));
+    // This expression clears the n positions in x on the rightmost end so that we can place our bits of interest there
+    //(1 << n) shifts 1 to the left to create a mask that looks like.. 00001000
+    //  subtracting one yields 00000111
+    // inverting this yields 11111000 - this is the mask that clears the righmost bit positions in x
+    //  x & does the clearing
 
-   int unsigned x_cleared = (x & ~((1 << n) - 1));
-   //This expression clears the n positions in x on the rightmost end so that we can place our bits of interest there
-   //(1 << n) shifts 1 to the left to create a mask that looks like.. 00001000
-   // subtracting one yields 00000111
-   //inverting this yields 11111000 - this is the mask that clears the righmost bit positions in x
-   // x & does the clearing
-
-   return (x_cleared | bits_of_interest);
-
-      
-   
-    
-
+    return (x_cleared | bits_of_interest);
 }
