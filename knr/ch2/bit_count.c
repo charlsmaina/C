@@ -6,22 +6,22 @@ This piece of code counts the number of 1-bits in a interger
 */
 
 #include <stdio.h>
-#define BYTE 8
+#define INTERGER_SIZE 32
 
-int bit_count(int x);
-void dec_bin(int y, int byte[]);
+int bit_count(int signed x);
+void dec_bin(int signed y, int byte[]);
 
 int main()
 {
-    int byte[BYTE] = {0};
+    int byte[INTERGER_SIZE] = {0};
     int x;
-    x = 123;
+    x = 2147483648;
     dec_bin(x, byte);
 
     printf("Number of one bits in x :%d \n", bit_count(x));
 }
 
-int bit_count(int x)
+int bit_count(int signed x)
 {
     int i;
     for (i = 0; x != 0; x >>= 1)
@@ -33,18 +33,18 @@ int bit_count(int x)
     }
     return i;
 }
-void dec_bin(int y, int byte[])
+void dec_bin(int signed y, int byte[])
 {
 
     printf("Decimal %d\n", y);
 
-    for (int i = BYTE - 1; i >= 0; i--)
+    for (int i = INTERGER_SIZE - 1; i >= 0; i--)
     {
         byte[i] = y % 2;
         y /= 2;
     }
 
-    for (int a = 0; a <= BYTE - 1; a++)
+    for (int a = 0; a <= INTERGER_SIZE - 1; a++)
     {
 
         printf("%d", byte[a]);
