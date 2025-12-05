@@ -8,6 +8,7 @@ position p inverted (i.e., 1 changed into 0 and vice versa), leaving the others 
 3. Flip the bits of intrest with a not operation
 4. Insert the bits to their corresponding positions
 
+
 */
 
 #include <stdio.h>
@@ -20,7 +21,7 @@ int byte[BYTE] = {0};
 int main()
 {
   int result;
-  result = invert(111, 6, 4);
+  result = invert(17, 6, 4);
 
   printf("New x after fliiping bits:\n");
   dec_bin(result, byte);
@@ -50,6 +51,20 @@ int invert(int unsigned x, int p, int n)
   -  creates a mask with ones at the bit positions to be flipped nd zero else where
   - ~(~(0 << n) << (p -n + 1)) flips that mask
   - x & ~(0 << n) << (p -n + 1) places zeros in the bit positions we want to flip
+
+  - The return statement is the one which appears cryptic
+        - start with this:
+        - the right shift or left shift have higher precedence than the & operator - and,not operator ~ an the OR operator
+        -  ~(x & ~(~0 << n) << (p - n + 1))
+
+        - first : ~(~0 << n) << (p + 1 - n) creates a mask that looks like 01111000
+        - (x & ~(~0 << n) << (p + 1 - n) ) collect the beat positions we wan to flip and makes all other bit positions zero
+        - We then flip the result :  ~(x & ~(~0 << n) << (p - n + 1)) - this flips everthing -  all bit positions
+        - What we need to do is to clear all bit posions except the bit of interest that we wanted: this is done by & with a mask that has ones in the bit positions of interest and zeros every where else
+         - & ~(~0 << n) << (p - n + 1)); - this is what this bit does - it creates a mask . ie & 01111000 which ensures only the bit positions of interest are flipped.
+         - To finish the task ,, an or operation - sets the bits positions in cleared _ x to their initial vales flipped version
+         -Thats it...nothing big :
+
 
   */
 }
