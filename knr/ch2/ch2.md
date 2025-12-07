@@ -228,3 +228,14 @@ Example:
 
 - in both cases n becomes 6
 - Increment and decrement operators can only be applied to variables - an expression like (i+j) ++ is illegal
+
+## Assingment operators and expressions:
+
+- expr1 op= expr2 - This is equivalent to expr1 = (expr1) op (expr2)
+- op can be any of the binary operators ie: /,\*,+,-,<< , >>, ^, &, |
+
+## Conditional expressions
+
+- ?:
+- (expr1)? expr2: expr3
+- In this case expr1 is evaluated , and if found to be true , expr2 is assigned to be its value, otherwise, its value is assigned as expr3
