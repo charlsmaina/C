@@ -15,6 +15,11 @@ int get_string(char string[], int lim);
 
 int main()
 {
+    char a = 'a';
+    char A = 'A';
+    char B = 'B';
+    char Z = 'Z';
+    printf("%d,%d,%d,%d,%c,%c", a, A, B, Z, 91, 66 + a - A, 98);
     char string[LIMIT];
     int len;
     while ((len = get_string(string, LIMIT)))
