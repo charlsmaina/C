@@ -239,3 +239,27 @@ Example:
 - ?:
 - (expr1)? expr2: expr3
 - In this case expr1 is evaluated , and if found to be true , expr2 is assigned to be its value, otherwise, its value is assigned as expr3
+
+## Operators precedence
+
+- Decrasing order:
+- [], (),., ->
+- ++,--,!,~
+- \*,/,%
+- +,-
+- > > ,<<
+- > ,<,>=,<=
+- ==, !=
+- &
+- ^
+- |
+- &&
+- ||
+- :?
+- =,+=, op=
+- ,
+
+- Side effects --like i++ .ie - line[i] = i++
+- Functions and expressions may be evaluated differently
+- The order or function arguments may not be evaluated linearly - so if some arguments depends another -the implementation may not be always predicatble in differnt machines
+- Writing code that depends on the order of evalation is a bad programming practice
