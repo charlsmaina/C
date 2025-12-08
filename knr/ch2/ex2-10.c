@@ -9,25 +9,22 @@ with a conditional expression instead of if-else.
 */
 #include <stdio.h>
 #define LIMIT 10
-int check_char(char s);
-void lower(char x);
-int get_string(char string[], int lim);
+int check_char(char s);                 // checks if a character is a valid alphabet character
+void lower(char x);                     // converts a character to lower case if its in uppercase and leaves it intact if its in lower case
+int get_string(char string[], int lim); // fetches a string from the user
 
 int main()
 {
-    char a = 'a';
-    char A = 'A';
-    char B = 'B';
-    char Z = 'Z';
-    printf("%d,%d,%d,%d,%c,%c", a, A, B, Z, 91, 66 + a - A, 98);
-    char string[LIMIT];
-    int len;
-    while ((len = get_string(string, LIMIT)))
+    char string[LIMIT]; // An array of maximum size 10 to store a string that i want to convert to lower
+    int len;            // for getting length of a string - ensure we get something
+    while ((len = get_string(string, LIMIT)) > 0)
     {
-        for (int i = 0; i <= len - 1; i++)
+        printf("String: %s\n", string);                         // prints the string we got from the user
+        for (int i = 0; i <= len - 1 && string[i] != '\0'; i++) // transverses the string
         {
-            check_char(string[i]) ? lower(string[i]) : putchar(-1);
+            check_char(string[i]) ? lower(string[i]) : printf("%d", -1); // checks if the character is valid character
         }
+        printf("\n");
 
         return 0;
     }
@@ -36,7 +33,7 @@ int get_string(char string[], int lim)
 {
     char c;
     int i = 0;
-    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != ' ' && c != '\t'; i++)
+    for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != ' ' && c != '\t' && c != '\n'; i++)
     {
         string[i] = c;
     }
@@ -46,11 +43,10 @@ int get_string(char string[], int lim)
 int check_char(char s)
 {
     int i;
-    (s >= 'a' && s <= 'Z' || s >= 'A' && s <= 'Z') ? (i = 1) : (i = 0);
+    (s >= 'a' && s <= 'z' || s >= 'A' && s <= 'Z') ? (i = 1) : (i = 0);
     return i;
 }
 void lower(char x)
 {
-    (x >= 'A' && x <= 'a') ? (x += 'A - a') : (x = x);
-    printf("%c", x);
+    (x >= 'A' && x <= 'Z') ? (printf("%c", x += ('a' - 'A'))) : printf("%c", x);
 }
