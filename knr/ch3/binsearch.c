@@ -6,7 +6,7 @@ int main()
 {
     int digits[LIMIT];
     int found, number;
-    number = 180;
+    number = 49;
 
     for (int i = 0; i < LIMIT; i++)
     {
