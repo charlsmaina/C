@@ -6,8 +6,8 @@ int main()
 {
     int digits[LIMIT];
     int found, number;
-    number = 51;
-    printf("Break 1\n");
+    number = 180;
+
     for (int i = 0; i < LIMIT; i++)
     {
 
@@ -18,9 +18,8 @@ int main()
         printf("%3d%c", digits[i], (digits[i] % 10 == 9 || i == 99) ? '\n' : ' ');
     }
 
-    printf("Break 2\n");
-    found = binary_search(number, digits, LIMIT);
-    printf("Found:%d\n", found);
+    (found = binary_search(number, digits, LIMIT)) != -1 ? printf("%d found at index %d\n", number, found) : printf("Not found\n");
+    return 0;
 }
 int binary_search(int number, int digits[], int lim)
 {
@@ -36,12 +35,13 @@ int binary_search(int number, int digits[], int lim)
 
         if (number > digits[middle])
         {
-            low = middle;
-            printf("break 3");
+            /* move low past middle to avoid infinite loop */
+            low = middle + 1;
         }
         else if (number < digits[middle])
         {
-            high = middle;
+            /* move high before middle to avoid infinite loop */
+            high = middle - 1;
         }
         else
             return middle;
