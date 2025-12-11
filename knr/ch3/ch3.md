@@ -54,3 +54,21 @@
 - Use character literals (e.g., `'a'`) in `case` labels — they are integer constants in C.
 - Do not use variables or expressions that depend on runtime values as `case` labels; the compiler must know each label at compile time.
 - If you need to compare against runtime variables, prefer `if`/`else if`, or compute a small runtime "tag" and `switch` on that tag, or use a lookup/function table.
+
+### For loop and while loop
+
+- Think them as structures that facilitate the performance of a given task multiple times based on certain conditions
+- Conditions are checked and if they evaluate to non-zero - the statements enclosed by the loop executes
+
+### multifile compilations
+
+- Steps to follow:
+  - Write a clear function prototype using include guards: #ifndef GETLINE #define GETLINE ...function prototype...#endif
+  - Write a clear function defination using the function prototype
+  - Include the header file by #include "headerfile.h"
+  - Include also the header file in the main file
+
+### Function of the #include guard used in function headers
+
+- It helps avoid duplicate processing where a header file is included more once leading to compilation errors
+- It purpose is to ensure no header file is seen more than once per translation unit
