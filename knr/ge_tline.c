@@ -1,14 +1,12 @@
-#include <ge_tline.h>
+#include "ge_tline.h"
 #include <stdio.h>
 
-#define LIMIT 15
-
-int ge_line(char line[], int lim)
+int ge_tline(char line[], int lim)
 {
     int len, c;
-    for (len = 0; len < LIMIT - 1 && (c = getchar()) != EOF && c != '\n'; len++)
+    for (len = 0; len < lim - 1 && (c = getchar()) != EOF && c != '\n'; len++)
     {
-        line[len] = c;
+        line[len] = (char)c;
     }
     if (c == '\n')
     {
