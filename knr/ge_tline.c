@@ -1,6 +1,7 @@
+#include <ge_tline.h>
 #include <stdio.h>
+
 #define LIMIT 15
-int ge_tline(char line[LIMIT], int lim);
 
 int ge_line(char line[], int lim)
 {
