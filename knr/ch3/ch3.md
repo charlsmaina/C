@@ -72,3 +72,8 @@
 
 - It helps avoid duplicate processing where a header file is included more once leading to compilation errors
 - It purpose is to ensure no header file is seen more than once per translation unit
+
+### Functions
+
+- do-while loop - expression is evaluated at the bottom
+- Sometimes , the control flow your are using might be throttling flow - always test your program sequentially to see if the logic makes sense
