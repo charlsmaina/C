@@ -1,4 +1,4 @@
-#include "ge_tline.h"
+#include "../headers/ge_tline.h"
 #include <stdio.h>
 
 int ge_tline(char line[], int lim)
