@@ -25,7 +25,29 @@ int main()
     int len;
     while ((len = ge_tline(s, ARRAY_LIM)) > 0 && (len = ge_tline(t, ARRAY_LIM)) > 0)
     {
-        printf("Line1:%s\n", s);
-        printf("Line 2:%s\n", t);
+        escape(s, t);
     }
+}
+
+void escape(char s[], char t[])
+{
+    int i, j;
+    for (i = 0, j = 0; t[j] != '\0'; i++, j++)
+    {
+        switch (t[j])
+        {
+        case '\t':
+            s[i++] = '\\';
+            s[i] = 't';
+            break;
+        case '\n':
+            s[i++] = '\\';
+            s[i] = 'n';
+            break;
+        default:
+            s[i] = t[j];
+            break;
+        }
+    }
+    printf("Line 2 copied to line 1 with visible escape sequence \n%s\n", s);
 }
