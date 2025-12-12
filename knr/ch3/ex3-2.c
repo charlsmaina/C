@@ -1,7 +1,7 @@
 /*
 Exercise 3-2. Write a function escape(s,t) that converts characters like newline and tab
 into visible escape sequences like \n and \t as it copies the string t to s. Use a switch. Write
-a function for the other direction as well, converting escape sequences into the real characters.
+a function for the other direction as well, converting escape sequences into the real characters.gcc
 
 
 ------Pseudocode -----
@@ -13,7 +13,7 @@ a function for the other direction as well, converting escape sequences into the
 - case 'n' - print a newline char
 */
 #include <stdio.h>
-#include "ge_tline.h"
+#include "../headers/ge_tline.h"
 #define ARRAY_LIM 20
 int ge_tline(char line[], int lim);
 void escape(char s[], char t[]);
