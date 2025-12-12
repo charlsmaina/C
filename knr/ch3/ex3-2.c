@@ -13,6 +13,7 @@ a function for the other direction as well, converting escape sequences into the
 - case 'n' - print a newline char
 */
 #include <stdio.h>
+#include "ge_tline.h"
 #define ARRAY_LIM 20
 int ge_tline(char line[], int lim);
 void escape(char s[], char t[]);
@@ -24,6 +25,7 @@ int main()
     int len;
     while ((len = ge_tline(s, ARRAY_LIM)) > 0 && (len = ge_tline(t, ARRAY_LIM)) > 0)
     {
-        escape(s, t);
+        printf("Line1:%s\n", s);
+        printf("Line 2:%s\n", t);
     }
 }
