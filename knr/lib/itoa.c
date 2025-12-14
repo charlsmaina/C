@@ -1,6 +1,11 @@
 #include "../headers/itoa.h"
 
 #include <stdio.h>
+
+/*
+This is function defination of a function itoa() that takes an interger n and converts it into a string
+
+*/
 void itoa(int n, char s[])
 {
     int i, sign;
