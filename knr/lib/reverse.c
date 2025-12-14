@@ -1,4 +1,4 @@
-#include "reverse.h"
+#include "../headers/reverse.h"
 #include <stdio.h>
 
 void reverse(char s[])
