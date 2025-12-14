@@ -5,9 +5,12 @@ int atoi(char s[])
 {
     int value;
     value = 0;
-    int i;
+    int i = 0;
+    int sign;
+    (s[i] == '-') ? sign = -1 : sign = 1; // check why this check for sign does not work
+
     printf("String:%s", s);
-    for (i = 0; s[i] != '\0' && s[i] != '\n'; i++)
+    for (; s[i] != '\0' && s[i] != '\n'; i++)
     {
         if (s[i] >= '0' && s[i] <= '9')
         {
