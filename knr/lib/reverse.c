@@ -3,7 +3,7 @@
 
 void reverse(char s[])
 {
-    printf("String:%s", s);
+    printf("String:\n%s", s);
     int i, j;
     char temp;
     i = j = 0;
@@ -11,12 +11,13 @@ void reverse(char s[])
     {
         j++;
     }
+    j--; // to leave '/0' intact
     for (; i < j; i++)
     {
         temp = s[i];
         s[i] = s[j];
-        s[i] = temp;
+        s[j] = temp;
         j--;
     }
-    printf("\nReversed string:%s", s);
+    printf("Reversed string:%s\n", s);
 }
