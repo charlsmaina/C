@@ -8,7 +8,6 @@ int strindex(char s[], char t[])
     int len_t;
     while (s[i++] != '\0')
         ;
-    i--;
 
     while (t[j++] != '\0')
         ;
@@ -18,9 +17,9 @@ int strindex(char s[], char t[])
     {
         for (k = i, j = len_t; s[k] == t[j] && j >= 0; k--, j--)
             ;
-        if (j == 0)
+        if (j <= 0)
         {
-            return i;
+            return k + 1;
         }
     }
     return -1;
