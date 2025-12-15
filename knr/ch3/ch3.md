@@ -77,3 +77,15 @@
 
 - do-while loop - expression is evaluated at the bottom
 - Sometimes , the control flow your are using might be throttling flow - always test your program sequentially to see if the logic makes sense
+
+### continue and break
+
+- break - causes an ealy exit on a loop
+- continue - causes a jump to the next iteration in the loop - in a for loop - increment is done and then test - and then loop executes
+
+### Goto and labels
+
+goto - causes a jump in program execution to a certain label- which does something
+label - is simlar to a function name and it is a collection of statements that will be executed if the program jumps there
+
+- Goto complicate stuff - but can be useful in highly nested situations where you want to exclusively jump ot when a certain condition occurs
