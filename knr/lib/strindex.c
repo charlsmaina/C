@@ -2,31 +2,28 @@
 #include <stdio.h>
 #include <string.h>
 #include "../headers/ge_tline.h"
-int strindex(char s[], char t[], int size_t)
+
+int strindex(char line[], char pattern[])
+
 {
-    printf("Enter pattern to check:\n\n");
-    int len = 0;
+    int i, j, k;
+    int len_line;
+    int len_pattern;
 
-    while ((len = ge_tline(t, size_t)) > 0)
+    len_line = strlen(line);       // length of line
+    len_pattern = strlen(pattern); // length of pattern
+
+    for (i = 0; i < len_line - 1; i++)
     {
-        int i, j, k;
-        int len_t;
-        i = strlen(s);     // length of line
-        len_t = strlen(t); // length of pattern
+        for (k = i, j = 0; j < len_pattern - 1 && line[k] == pattern[j]; k++, j++) /*len_pattern-1 because of the nature of the working of the ge_tline: so essentially ge_tline appends a newline and a null terminator to every string that is handled to it. strlen outputs the newline as part of that length but we dont want the newline to be part of the pattern: so we check the pattern up to len_pattern - 1: so essentially the element at pattern[len_pattern - 1] is a new line character*/
+            ;
+        if (j == len_pattern - 1)
 
-        printf("Len line:%d\n", i);
-        printf("Len pattern:%d\n", len_t);
-
-        for (i = i - 1; i >= 0; i--)
-        {
-            for (k = i, j = (len_t - 2); s[k] == t[j] && j >= 0; k--, j--)
-                ;
-            if (j <= 0)
-            {
-                return k + 1;
-            }
-        }
+            return i;
     }
-
     return -1;
 }
+
+/*
+ The best way out of this is: have the stringindex receive the pattern to check, the user can input the pattern. Then pass this pattern to strindex from main.Dont worry about its length:
+*/
