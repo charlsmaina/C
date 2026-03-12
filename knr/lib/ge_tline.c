@@ -3,6 +3,7 @@
 
 int ge_tline(char line[], int lim)
 {
+    printf("Enter a line or a string:\n");
     int len, c;
     for (len = 0; len < lim - 1 && (c = getchar()) != EOF && c != '\n'; len++)
     {
