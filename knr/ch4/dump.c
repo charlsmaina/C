@@ -2,7 +2,7 @@
 #include <stdio.h>
 int main()
 {
-    char name[13] = "charlesm";
+    char name[] = "charlesm";
     printf("Name = %s \n", name);
 
     unsigned char *ptr = (unsigned char *)name;
