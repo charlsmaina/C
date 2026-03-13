@@ -18,3 +18,6 @@
   - No GC - you do it manually
   - Compiles directly to machine code
   - Close to hardware - you can access memory directly:
+
+- Cast operator (int) expression -converts the expression to the type in braces
+- External variables have a larger scope and big lifetime. Any c program contains functions and variables as its core building blocks. Functions are external.ie you cannot define a function inside another function. For variables that are shared by many functions, it may be convinient to use external variables instead of using long lists of arguments in the functions. But this can lead to functions that have alot of data connections which may affect the structure and coupling of the different functions. -hidden dependencies - limits modularity - ie function depends on a state that can be modifid outside of it.
