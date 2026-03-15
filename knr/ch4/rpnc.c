@@ -16,66 +16,71 @@
 #include <ctype.h>
 #define NUMBER '0' // this is a flag to use in switch to indentify that getop has found a number
 #define MAXOP 100
+#define BUFSIZE 100
+#define STACKSIZE 100
 
 void push(double);
 double pop(void);
 int get_op(char string[]);
+int getch(void);
+void ungetch(int c);
 
 int main()
 {
     int type;
     double op2;
     char string[MAXOP];
-    switch (type = get_op(string))
-    {
-    case NUMBER:
-        push(atof(string));
-        break;
-    case '+':
-        push(pop() + pop());
-        break;
-    case '*':
-        push(pop() * pop());
-        break;
-    case '-':
-        op2 = pop();
-        push(pop() - op2);
-        break;
-    case '/':
-        op2 = pop();
-        if (op2 != 0.0)
-        {
-            push(pop() / op2);
-            break;
-        }
-        else
-        {
-            printf("Error -> Division with zero:\n");
-            break;
-        }
-    case '\n':
-        printf("Result: %f\n", pop());
-        break;
 
-    default:
-        printf("Invalid input:\n");
-        break;
+    while ((type = get_op(string)) != EOF)
+    {
+        switch (type)
+        {
+        case NUMBER:
+            push(atof(string));
+            break;
+        case '+':
+            push(pop() + pop());
+            break;
+        case '*':
+            push(pop() * pop());
+            break;
+        case '-':
+            op2 = pop();
+            push(pop() - op2);
+            break;
+        case '/':
+            op2 = pop();
+            if (op2 != 0.0)
+            {
+                push(pop() / op2);
+            }
+            else
+            {
+                printf("Error -> Division with zero:\n");
+            }
+            break;
+        case '\n':
+            printf("Result: %f\n", pop());
+            break;
+
+        default:
+            printf("Unknown command: %s :\n", string);
+            break;
+        }
     }
+
     return 0;
 }
 
-int top_stack;
-top_stack = 0;
+int top_stack = 0;
+double stack[STACKSIZE];
 
-int max_stack;
-max_stack = 20;
-
-double stack[max_stack];
 void push(double s)
 {
-    if (top_stack < max_stack)
+    if (top_stack < STACKSIZE)
     {
         stack[top_stack++] = s;
+        printf("Pushed %f\n", s);
     }
     else
         printf("Error -> Cannot push:Stack is full:\n");
@@ -83,13 +88,63 @@ void push(double s)
 
 double pop(void)
 {
-    if (top_stack >= 0)
+    if (top_stack > 0)
     {
-        return stack[top_stack--];
+        return stack[--top_stack];
     }
     else
     {
         printf("Error: no more elements to pop\n");
         return 0.0;
+    }
+}
+
+// get_op implementation
+int get_op(char string[])
+{
+    int c, i;
+    while ((string[0] = c = getch()) == ' ' || c == '\t')
+        ; // ignore whitspace
+    string[1] = '\0';
+    if (!isdigit(c) && c != '.')
+        return c; // not a number
+    i = 0;
+    if (isdigit(c))
+    {
+        while (isdigit(string[++i] = c = getch())) // collect the number
+            ;
+        if (c == '.')
+        {
+            while (isdigit(string[++i] = c = getch()))
+                ;
+        }
+        string[i] = '\0';
+
+        if (c != EOF)
+        {
+            ungetch(c);
+        }
+
+        return NUMBER;
+    }
+}
+
+int buf_index = 0;
+char buf[BUFSIZE];
+
+int getch(void)
+{
+    return (buf_index > 0) ? buf[--buf_index] : getchar();
+}
+void ungetch(int c)
+{
+
+    if (buf_index >= BUFSIZE)
+    {
+        printf("Ungetch: too many characters\n");
+    }
+    else
+    {
+        buf[buf_index++] = c;
     }
 }
