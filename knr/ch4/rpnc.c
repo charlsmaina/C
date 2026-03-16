@@ -14,10 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#define NUMBER '0' // this is a flag to use in switch to indentify that getop has found a number
-#define MAXOP 100
-#define BUFSIZE 100
-#define STACKSIZE 100
+#define NUMBER '0'    // this is a flag to use in switch to indentify that getop has found a number
+#define MAXOP 100     // maximum size of the array used to fetch the operator and the operands
+#define BUFSIZE 100   // size of the buffer to store unwanted pushed back character
+#define STACKSIZE 100 // size of our stack
 
 void push(double);
 double pop(void);
@@ -27,8 +27,8 @@ void ungetch(int c);
 
 int main()
 {
-    int type;
-    double op2;
+    int type;   // this is the variable used in the switch condition
+    double op2; // temporary storage of variables incase we have non- commutative operations
     char string[MAXOP];
 
     while ((type = get_op(string)) != EOF)
@@ -104,8 +104,8 @@ int get_op(char string[])
 {
     int c, i;
     while ((string[0] = c = getch()) == ' ' || c == '\t')
-        ; // ignore whitspace
-    string[1] = '\0';
+        ;             // ignore whitspace
+    string[1] = '\0'; // required to have a proper string termination incase only a single character is read.
     if (!isdigit(c) && c != '.')
         return c; // not a number
     i = 0;
