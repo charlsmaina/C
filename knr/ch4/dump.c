@@ -20,4 +20,6 @@ int main()
 
     char address[] = "-1234.5";
     printf("Address is %f\n", atof(address));
+    int y;
+    printf("C = %d\n", y);
 }
