@@ -1,4 +1,4 @@
-
+#include <stdlib.h>
 #include <stdio.h>
 int main()
 {
@@ -17,4 +17,7 @@ int main()
         - If you are initializing with known values, let compiler decide the size
         - If you are creating a buffer, specify size explicitly
     */
+
+    char address[] = "-1234.5";
+    printf("Address is %f\n", atof(address));
 }

@@ -64,7 +64,7 @@ int main()
             }
             else
             {
-                push(fmod(pop(), op2));
+                push(fmod(pop(), op2)); // fmod(), takes two arguments - it sfrom math.h - works with floats
             }
             break;
 
@@ -113,11 +113,26 @@ int get_op(char string[])
 {
     int c, i;
     while ((string[0] = c = getch()) == ' ' || c == '\t')
-        ;             // ignore whitspace
+        ;             // ignore whitespace
     string[1] = '\0'; // required to have a proper string termination incase only a single character is read.
-    if (!isdigit(c) && c != '.')
+    if (!isdigit(c) && c != '.' && c != '-')
         return c; // not a number
     i = 0;
+    if (c == '-')
+    {
+
+        if (isdigit(c = getch()) || c == '.')
+        {
+            string[++i] = c; // this one confirms its  anumber
+        }
+        else
+        {
+            if (c != EOF)
+                ungetch(c);
+            return '-'; // otherwise return the operator
+        }
+    }
+
     if (isdigit(c))
     {
         while (isdigit(string[++i] = c = getch())) // collect the number
