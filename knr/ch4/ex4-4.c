@@ -1,0 +1,202 @@
+/*
+Exercise 4-4. Add the commands to print the top elements of the stack without popping, to
+duplicate it, and to swap the top two elements. Add a command to clear the stack.
+
+---------------------pseudocode-------------------------------
+- printingtop two elements of the stacK:
+    - use a simple loop - print toP-stack -1 and top of stack -2
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
+#define NUMBER '0'    // this is a flag to use in switch to indentify that getop has found a number
+#define MAXOP 100     // maximum size of the array used to fetch the operator and the operands
+#define BUFSIZE 100   // size of the buffer to store unwanted pushed back character
+#define STACKSIZE 100 // size of our stack
+
+void push(double);
+double pop(void);
+int get_op(char string[]);
+int getch(void);
+void ungetch(int c);
+void clear(void);
+
+int main()
+{
+    int type;        // this is the variable used in the switch condition
+    double op2, op1; // temporary storage of variables incase we have non- commutative operations
+    char string[MAXOP];
+
+    while ((type = get_op(string)) != EOF)
+    {
+        switch (type)
+        {
+        case NUMBER:
+            push(atof(string));
+            break;
+        case '+':
+            push(pop() + pop());
+            break;
+        case '*':
+            push(pop() * pop());
+            break;
+        case '-':
+            op2 = pop();
+            push(pop() - op2);
+            break;
+        case '/':
+            op2 = pop();
+            if (op2 != 0.0)
+            {
+                push(pop() / op2);
+            }
+            else
+            {
+                printf("Error -> Division with zero:\n");
+            }
+            break;
+        case '%':
+            op2 = pop();
+            if (op2 == 0.0)
+            {
+                printf("Modulo 0.0 is undefined\n");
+            }
+            else
+            {
+                push(fmod(pop(), op2)); // fmod(), takes two arguments - it sfrom math.h - works with floats
+            }
+            break;
+        case 't':
+            op2 = pop();
+            printf("Top of stack: %f\n", op2);
+            push(op2);
+            break;
+        case 'd':
+
+            op2 = pop();
+            push(op2);
+            push(op2);
+            break;
+        case 'c':
+            clear();
+        case 's':
+            op1 = pop();
+            op2 = pop();
+            push(op1);
+            push(op2);
+            break;
+
+        case '\n':
+            printf("Result: %f\n", pop());
+            break;
+
+        default:
+            printf("Unknown command: %s :\n", string);
+            break;
+        }
+    }
+
+    return 0;
+}
+
+int top_stack = 0;
+double stack[STACKSIZE];
+
+void push(double s)
+{
+    if (top_stack < STACKSIZE)
+    {
+        stack[top_stack++] = s;
+        printf("Pushed %f\n", s);
+    }
+    else
+        printf("Error -> Cannot push:Stack is full:\n");
+}
+
+double pop(void)
+{
+    if (top_stack > 0)
+    {
+        return stack[--top_stack];
+    }
+    else
+    {
+        printf("Error: no more elements to pop\n");
+        return 0.0;
+    }
+}
+
+// get_op implementation
+int get_op(char string[])
+{
+    int c, i;
+    while ((string[0] = c = getch()) == ' ' || c == '\t')
+        ;             // ignore whitespace
+    string[1] = '\0'; // required to have a proper string termination incase only a single character is read.
+    if (!isdigit(c) && c != '.' && c != '-' && c != 't')
+        return c; // not a number
+    i = 0;
+    if (c == 't' || c == 'c' || c == 'd' || c == 's')
+    {
+        return c;
+    }
+
+    if (c == '-')
+    {
+
+        if (isdigit(c = getch()) || c == '.')
+        {
+            string[++i] = c; // this one confirms its  anumber
+        }
+        else
+        {
+            if (c != EOF)
+                ungetch(c);
+            return '-'; // otherwise return the operator
+        }
+    }
+
+    if (isdigit(c))
+    {
+        while (isdigit(string[++i] = c = getch())) // collect the number
+            ;
+        if (c == '.')
+        {
+            while (isdigit(string[++i] = c = getch()))
+                ;
+        }
+        string[i] = '\0';
+
+        if (c != EOF)
+        {
+            ungetch(c);
+        }
+
+        return NUMBER;
+    }
+}
+
+int buf_index = 0;
+char buf[BUFSIZE];
+
+int getch(void)
+{
+    return (buf_index > 0) ? buf[--buf_index] : getchar();
+}
+void ungetch(int c)
+{
+
+    if (buf_index >= BUFSIZE)
+    {
+        printf("Ungetch: too many characters\n");
+    }
+    else
+    {
+        buf[buf_index++] = c;
+    }
+}
+void clear(void)
+{
+    top_stack = 0;
+}
