@@ -3,12 +3,18 @@ void printd(int num);
 
 int main()
 {
-    printd(1235);
+    printd(-1235);
     putchar('\n');
 }
 
 void printd(int num)
 {
+    if (num < 0)
+    {
+        putchar('-');
+        num = -num;
+    }
+
     if (num / 10)
     {
         printd(num / 10);
