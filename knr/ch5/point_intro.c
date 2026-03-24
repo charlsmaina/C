@@ -33,7 +33,7 @@ int main()
 void swap(int *pc, int *pd)
 {
     int temp;
-    temp = *pc;
-    *pc = *pd;
-    *pd = temp;
+    temp = *pc; // stores the value that pointer pc is pointing to
+    *pc = *pd;  // changes the value that pointer pc is pointing to to the value pointer pd is pointing to
+    *pd = temp; // updates the value that pointer pd is pointing to temp;
 }
