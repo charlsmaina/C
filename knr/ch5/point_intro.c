@@ -29,6 +29,7 @@ int main()
     printf("C:%d\nD:%d\n", c, d);
     swap(&c, &d);
     printf("Swapped values of c and d\nC:%d\nD:%d\n", c, d);
+    return 0;
 }
 void swap(int *pc, int *pd)
 {
