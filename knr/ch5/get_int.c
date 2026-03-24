@@ -31,7 +31,7 @@ int get_int(int *pn) // gets a number and stores in in the pointer: int return i
         return 0;
     }
     sign = (c == '-') ? -1 : 1;
-    if (sign == '-' || sign == '+')
+    if (c == '-' || c == '+')
     {
         c = getch();
     }
