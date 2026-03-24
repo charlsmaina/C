@@ -1,6 +1,8 @@
 
 #include <stdio.h>
 
+void swap(int *pc, int *pd);
+
 int main()
 {
     int x = 8;
@@ -20,4 +22,18 @@ int main()
     char *ip2; // pointer type must match the type of data it stores
     ip2 = &name[0];
     printf("Pointer pointing to name prints:%d\n", *ip2);
+
+    // swap c and d
+    int c = 34;
+    int d = 43;
+    printf("C:%d\nD:%d\n", c, d);
+    swap(&c, &d);
+    printf("Swapped values of c and d\nC:%d\nD:%d\n", c, d);
+}
+void swap(int *pc, int *pd)
+{
+    int temp;
+    temp = *pc;
+    *pc = *pd;
+    *pd = temp;
 }
