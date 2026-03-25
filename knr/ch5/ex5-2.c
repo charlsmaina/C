@@ -34,6 +34,8 @@ int get_float(float *fp)
     int c;
     int sign;
     int power;
+    power = 1;
+
     while (isspace(c = getch()))
         ; /*skip spaces*/
     if (!isdigit(c) && c != EOF && c != '+' && c != '-' && c != '.')
@@ -42,6 +44,10 @@ int get_float(float *fp)
         return 0;
     }
     sign = (c == '-') ? -1 : 1;
+    if (c == '-' || c == '+')
+    {
+        c = getch();
+    }
 
     for (*fp = 0; isdigit(c); c = getch())
     {
@@ -51,7 +57,7 @@ int get_float(float *fp)
     if (c == '.')
     {
 
-        for (power = 1; isdigit(c = getch()); power *= 10)
+        for (; isdigit(c = getch()); power *= 10)
         {
             *fp = *fp * 10 + (c - '0');
         }
