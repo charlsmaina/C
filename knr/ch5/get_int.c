@@ -1,16 +1,16 @@
 #include <stdio.h>
-#include <string.h>
+
 #include <ctype.h>
 
 int get_int(int *pn);
 int getch(void);
 void ungetch(int);
-#define SIZE 100
+#define SIZE 10
 
 int main()
 {
     int numbers[SIZE];
-    for (int i = 0; i < SIZE && get_int(&numbers[i]); i++) // populates an array with numbers
+    for (int i = 0; i < SIZE && get_int(&numbers[i]) != EOF; i++) // populates an array with numbers
         ;
 
     for (int i = 0; i < 10; i++)
@@ -40,11 +40,13 @@ int get_int(int *pn) // gets a number and stores in in the pointer: int return i
         *pn = 10 * *pn + (c - '0');
     }
     *pn *= sign;
+
     if (c != EOF)
     {
         ungetch(c);
     }
     return c;
+    /*So c is an interger: what is returned: in the for loop: for the array to stop populating , a zero has to be returned*/
 }
 
 int BUFFER[SIZE];
@@ -59,6 +61,8 @@ void ungetch(int c)
     if (buf_pointer < SIZE)
     {
         BUFFER[buf_pointer++] = c;
+        int i = 0;
+        printf("Buffer contents:%c:\n", BUFFER[--buf_pointer]);
     }
     else
         printf("Error: Buffer full\n");
