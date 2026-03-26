@@ -12,14 +12,18 @@ int str_len(char *pc);
 
 int main()
 {
-    char string[] = "Kinyua";
+    char string[] = "MAINA";
     printf("Length of %s is %d\n", string, str_len(string));
+    char *ptc;
+
+    ptc = string + 2;
+    printf("Second letter of %s is %c\n", string, *(ptc - 1));
 }
 
 int str_len(char *pc)
 {
     int n;
-    for (n = 0; *(pc++) != '\0'; n++)
+    for (n = 0; *(pc++) != '\0'; n++) /*You check for the value itself*/
         ;
     return n;
 }
