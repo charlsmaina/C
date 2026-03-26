@@ -15,9 +15,11 @@ int main()
     char string[] = "MAINA";
     printf("Length of %s is %d\n", string, str_len(string));
     char *ptc;
+    long y = 5;
 
     ptc = string + 2;
     printf("Second letter of %s is %c\n", string, *(ptc - 1));
+    printf("Address of ptc is: %ld\n", ptc);
 }
 
 int str_len(char *pc)
