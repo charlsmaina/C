@@ -15,10 +15,10 @@ strcat(s,t) copies the string t to the end of s.
 #include <stdio.h>
 #define BUFFER 150
 
-char *strcat(char *s, char *t);
+char *my_strcat(char *s, char *t);
 static char copying_buffer[BUFFER];
-static char *buf_p;
-int bufindex;
+static char *buf_p = copying_buffer;
+
 char *alloc(int n);
 
 int main()
@@ -26,35 +26,50 @@ int main()
     char *rp;
     char *name = "Charles";
     char *sur_name = "Kinyua";
-    rp = strcat(name, sur_name);
+    rp = my_strcat(name, sur_name);
     while (*rp != '\0')
     {
-        putchar(*rp);
-        rp++;
+        putchar(*rp++);
     }
+    putchar('\n');
 }
 
-char *strcat(char *s, char *t)
+char *my_strcat(char *s, char *t)
 {
-    int n;
-    char *alloc_p;
-    n = 0;
-    while (*s != '\0' || *t != '\0')
-    {
-        s++;
-        t++;
-        n++;
-    }
-    n--;
+    int s_len;
+    int t_len;
+    char *start;
+    char *temp_s;
+    char *temp_t;
 
-    alloc_p = alloc(n);
-    s -= (n - 1);
-    t -= (n - 1);
-    while (*s = copying_buffer[bufindex++] != '\0')
-        s++;
-    while (*t = copying_buffer[bufindex++] != '\0')
-        t++;
-    return alloc_p;
+    temp_s = s;
+    temp_t = t;
+
+    char *alloc_p;
+    s_len = 0;
+    t_len = 0;
+
+    while (*temp_s++)
+    {
+
+        s_len++;
+    }
+
+    while (*temp_t++)
+    {
+
+        t_len++;
+    }
+
+    alloc_p = alloc(s_len + t_len + 1);
+    start = alloc_p;
+
+    while ((*alloc_p++ = *s++) != '\0')
+        ;
+    alloc_p--;
+    while ((*alloc_p++ = *t++) != '\0')
+        ;
+    return start;
 }
 
 char *alloc(int n)
