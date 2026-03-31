@@ -7,19 +7,20 @@ strcat(s,t) copies the string t to the end of s.
 ---------------------problem statement----------------------
 #   So if space is not guaranteed...ie if s has no space to accommodate t. What do i do,,, do i just overwrite in memory? One option is to have a buffer to hold both strings and return a pointer to the beginning of the string that i just copied. To know how much space to allocate. First check for the length of each string. And allocate total length plus 1.
 --------------------pseudocode-------------------------
-- make s a pointer and increment it until it points to '\0', then assign t to s up to new line
+- Have strcat return a char pointer
+-Inside strcat(s,t) : compute their total length and allocate memory for that: then copy to that memory and return a pointer to where the string copying started. this is returned to main
 
 
 */
 
 #include <stdio.h>
-#define BUFFER 15
+#define BUFFER 150 // buffer size
 
 char *my_strcat(char *s, char *t);   /*this is a function that returns a char pointer to the starting address of the beginning of the copied string*/
 static char copying_buffer[BUFFER];  /*This is the borrowed memory that we use to concantenate the two strings together*/
 static char *buf_p = copying_buffer; /*This is the buffer manager: tracks memory to make sure there is enough to hold the combined two strings*/
 /*buf_p is global because it is to be shared by many function calls..it has to be consistent*/
-char *alloc(int n); /*This our memory allocate: n is the total length of the concantenated string*/
+char *alloc(int n); /*This is for memory allocation: n is the total length of the concantenated string*/
 
 int main()
 {
@@ -53,10 +54,10 @@ char *my_strcat(char *s, char *t)
     char *temp_s;
     char *temp_t;
 
-    temp_s = s;
-    temp_t = t;
+    temp_s = s; // temporarily stores the addresses starting s..ie s[0]
+    temp_t = t; // temporary storage of starting address of t ...ie t[0]
 
-    char *alloc_p;
+    char *alloc_p; // receives the starting address pointer from the memory allocator
     s_len = 0;
     t_len = 0;
 
@@ -72,7 +73,7 @@ char *my_strcat(char *s, char *t)
         t_len++;
     }
 
-    alloc_p = alloc(s_len + t_len + 1); /*buffer memory llocation: +1 to accomodate null terminator in the string*/
+    alloc_p = alloc(s_len + t_len + 1); /*buffer memory alocation: +1 to accomodate null terminator in the string*/
     start = alloc_p;                    // to store the beginning of the string in the buffer
 
     while ((*alloc_p++ = *s++) != '\0')
