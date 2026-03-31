@@ -44,6 +44,7 @@ int main()
         putchar(*rp2++);
     }
     putchar('\n');
+    return 0;
 }
 
 char *my_strcat(char *s, char *t)
