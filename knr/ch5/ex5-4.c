@@ -14,8 +14,8 @@ int strend(char *string_1, char *string_2);
 
 int main()
 {
-    char *s1 = "Willingfuness";
-    char *s2 = "ness";
+    char *s1 = "Rastafarianism";
+    char *s2 = "ism";
 
     if (strend(s1, s2))
     {
@@ -23,7 +23,7 @@ int main()
         {
             putchar(*s1++);
         }
-        printf(" ends with");
+        printf(" ends with ");
         while (*s2)
         {
             putchar(*s2++);
