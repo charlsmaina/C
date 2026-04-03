@@ -19,27 +19,27 @@ int main()
 
     if (strend(s1, s2))
     {
-        while (*s1++)
+        while (*s1)
         {
-            putchar(*s1);
+            putchar(*s1++);
         }
         printf(" ends with");
-        while (*s2++)
+        while (*s2)
         {
-            putchar(*s2);
+            putchar(*s2++);
         }
         putchar('\n');
     }
     else
     {
-        while (*s1++)
+        while (*s1)
         {
-            putchar(*s1);
+            putchar(*s1++);
         }
-        printf(" does not end with");
-        while (*s2++)
+        printf(" does not end with ");
+        while (*s2)
         {
-            putchar(*s2);
+            putchar(*s2++);
         }
         putchar('\n');
     }
@@ -48,19 +48,22 @@ int main()
 int strend(char *string_1, char *string_2)
 {
     char *temp;
+    char *temp_2;
+
     while (*string_1)
     {
         temp = string_1;
+        temp_2 = string_2;
 
-        while (*string_2 == *temp && *temp)
+        while (*temp_2 == *temp && *temp != '\0')
         {
-            string_2++;
+            temp_2++;
             temp++;
         }
         string_1++;
-        if (*string_1 == '\0' && *string_2 == '\0')
+
+        if (*temp == '\0' && *temp_2 == '\0')
             return 1;
-        else
-            return 0;
     }
+    return 0;
 }
