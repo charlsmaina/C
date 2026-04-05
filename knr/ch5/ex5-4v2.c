@@ -48,22 +48,25 @@ int main()
 
 int strend(char *string_1, char *string_2)
 {
-    int len_string_2 = 0;
+    char *t_string2;
+    t_string2 = string_2;
 
-    while (*string_2++) // when this loop is false, string_2 points to the null terminator
-        len_string_2++; // by the time we exit, len_string has  not counted null
-    while (*string_1++) // loop exits when string_1 points to null
-        ;
-    // since the point to one character more tha
-    string_2--;
-    string_1--;
-    while (*string_1 == *string_2 && len_string_2 > 0)
+    while (*string_1) // when this loop is false, string_2 points to the null terminator
     {
-        string_1--;
-        string_2--;
-        len_string_2--;
+        string_1++;
     }
-    if (len_string_2 == 0)
+
+    while (*t_string2) // loop exits when string_1 points to null
+    {
+        t_string2++;
+    }
+
+    while (*string_1 == *t_string2 && t_string2 >= string_2)
+    {
+        t_string2--;
+        string_1--;
+    }
+    if (t_string2 == string_2)
     {
         return 1;
     }
