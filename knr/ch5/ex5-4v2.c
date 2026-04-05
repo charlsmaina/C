@@ -61,10 +61,18 @@ int strend(char *string_1, char *string_2)
         t_string2++;
     }
 
-    while (*string_1 == *t_string2 && t_string2 >= string_2)
+    while (*string_1 == *t_string2)
     {
-        t_string2--;
-        string_1--;
+        if (t_string2 == string_2)
+        {
+            return 1;
+        }
+        else
+        {
+
+            t_string2--;
+            string_1--;
+        }
     }
     if (t_string2 == string_2)
     {
