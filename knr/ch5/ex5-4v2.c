@@ -74,10 +74,6 @@ int strend(char *string_1, char *string_2)
             string_1--;
         }
     }
-    if (t_string2 == string_2)
-    {
-        return 1;
-    }
-    else
-        return 0;
+
+    return 0;
 }
