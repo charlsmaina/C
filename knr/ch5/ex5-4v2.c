@@ -49,31 +49,34 @@ int main()
 int strend(char *string_1, char *string_2)
 {
     char *t_string2;
+    char *t_string1;
+    t_string1 = string_1;
     t_string2 = string_2;
 
-    while (*string_1) // when this loop is false, string_2 points to the null terminator
+    while (*t_string1) // when this loop is false, string_2 points to the null terminator
     {
-        string_1++;
+        t_string1++;
     }
 
     while (*t_string2) // loop exits when string_1 points to null
     {
         t_string2++;
     }
+    t_string1--;
+    t_string2--;
 
-    while (*string_1 == *t_string2)
+    while (t_string2 >= string_2)
     {
-        if (t_string2 == string_2)
+        if (*t_string1 != *t_string2)
         {
-            return 1;
+            return 0;
         }
-        else
         {
 
             t_string2--;
             string_1--;
         }
-    }
 
-    return 0;
+        return 1;
+    }
 }
