@@ -16,7 +16,7 @@ strcat(s,t) copies the string t to the end of s.
 #include <stdio.h>
 #define BUFFER 150 // buffer size
 
-char *my_strcat(char *s, char *t);   /*this is a function that returns a char pointer to the starting address of the beginning of the copied string*/
+char *my_strcat(char *s, char *t);   /*this is a function that returns a char pointer to the starting address of the  copied string*/
 static char copying_buffer[BUFFER];  /*This is the borrowed memory that we use to concantenate the two strings together*/
 static char *buf_p = copying_buffer; /*This is the buffer manager: tracks memory to make sure there is enough to hold the combined two strings*/
 /*buf_p is global because it is to be shared by many function calls..it has to be consistent*/
@@ -62,7 +62,7 @@ char *my_strcat(char *s, char *t)
     s_len = 0;
     t_len = 0;
 
-    while (*temp_s++)
+    while (*temp_s++) /*This simply means while *temp != '0' ., continue...it fails when the null terminator is reached. null terminator evaluates to '0*/
     {
 
         s_len++;
