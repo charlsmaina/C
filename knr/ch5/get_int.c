@@ -10,8 +10,11 @@ void ungetch(int);
 int main()
 {
     int numbers[SIZE];
-    for (int i = 0; i < SIZE && get_int(&numbers[i]) != EOF; i++) // populates an array with numbers
-        ;
+    int i = 0;
+    int returned_val;
+    while (i < SIZE && (returned_val = get_int(&numbers[i])) != EOF && returned_val != 0) // populates an array with numbers
+
+        i++;
 
     for (int i = 0; i < 10; i++)
     {
