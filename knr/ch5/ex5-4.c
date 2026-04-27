@@ -55,8 +55,11 @@ int strend(char *string_1, char *string_2)
         temp = string_1;
         temp_2 = string_2;
 
-        while (*temp_2++ == *temp && *temp++)
-            ;
+        while ((*temp_2 == *temp) && *temp)
+        {
+            temp++;
+            temp_2++;
+        };
         string_1++;
 
         if (*temp == '\0' && *temp_2 == '\0')
