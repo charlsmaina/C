@@ -1,3 +1,6 @@
+
+/*This a pointer version of the function getline(), getline() returns the length of the line*/
+
 #include <stdio.h>
 #define LIMIT 50
 #define LINE_BUFFER 150

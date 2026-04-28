@@ -37,7 +37,7 @@ char *ge_tline()
     int size = 50;
     char *line_start = alloc(size);
     char *line = line_start;
-    for (int i = 0; i < (size - 2) && (c = getchar()) != EOF; i++)
+    for (int i = 0; i < (size - 2) && (c = getchar()) != EOF && c != '\n'; i++)
     {
         *line = c;
         line++;
