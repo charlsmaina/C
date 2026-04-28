@@ -13,21 +13,52 @@ and their variants (Chapters 2, 3, and 4), reverse (Chapter 3), and strindex and
 */
 
 #include <stdio.h>
-
 #define BUFFER 150
 
-char *alloc();
+char *alloc(int size);
+char buffer[BUFFER];
+
+char *buffer_pointer = buffer;
 char *ge_tline(void);
+
 int main()
 {
     char *returned_add;
     returned_add = ge_tline();
-    while (*returned_add != '\n')
+    while (*returned_add)
     {
-        putchar(*returned_add++);
+        putchar(*returned_add);
+        returned_add++;
     }
 }
-char *ge_tline(void)
+char *ge_tline()
 {
     int c;
+    int size = 50;
+    char *line_start = alloc(size);
+    char *line = line_start;
+    for (int i = 0; i < (size - 2) && (c = getchar()) != EOF; i++)
+    {
+        *line = c;
+        line++;
+    }
+
+    if (c == '\n')
+    {
+        *line = '\n';
+        line++;
+    }
+
+    *line = '\0';
+    return line_start;
+}
+char *alloc(int size)
+{
+    if ((buffer_pointer + size) < (BUFFER + buffer))
+    {
+        buffer_pointer + size;
+        return buffer_pointer - size;
+    }
+    else
+        printf("Not enough space\n");
 }
