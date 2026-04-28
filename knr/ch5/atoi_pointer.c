@@ -10,15 +10,22 @@ This is the pointer version of th function atoi()
 int atoi(char *string);
 int main()
 {
-    char string[] = "1234";
+    char string[] = "   -1234";
     printf("String numerical value:%d\n", atoi(string));
 }
 int atoi(char *string)
 {
     int numerical_value;
+    int sign;
     numerical_value = 0;
     while (isspace(*string))
         string++;
+    sign = (*string == '-') ? -1 : 1;
+    if (*string == '-' || *string == '+')
+    {
+        string++;
+    }
+
     while (*string)
     {
         if ('0' <= *string && *string <= '9')
@@ -28,5 +35,6 @@ int atoi(char *string)
         }
     }
 
-    return numerical_value;
+    return numerical_value * sign;
+    ;
 }
