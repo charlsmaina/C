@@ -6,7 +6,7 @@ int main()
     {
         int x;
         int y;
-    };
+    } d;
 
     struct point pt;
     pt.x = 23;
