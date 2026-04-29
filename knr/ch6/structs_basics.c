@@ -29,7 +29,7 @@ int main()
     };
     struct rect screen;
     screen.p1.x = 14;
-    screen.p1.y = 25;
+    screen.p1.y = 24;
 
     printf("Top right cordinates of screen\nX coordinate: %d\nY coordinate: %d\n", screen.p1.x, screen.p1.y);
 }
