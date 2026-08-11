@@ -4,12 +4,12 @@
 
 int main()
 {
-    char name[] = "CHARLES";
+    char name[] = "CHARLES"; /* String literals  are always followed by a null*/
     char *cp = name;
 
     for (int i = 0; *cp != '\0'; cp++)
     {
         printf("%c", *cp);
-        }
+    }
     putchar('\n');
 }
