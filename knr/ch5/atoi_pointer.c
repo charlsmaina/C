@@ -1,5 +1,5 @@
 /*
-This is the pointer version of th function atoi()
+This is the pointer version of the function atoi()
 - atoi takes a string that is in ascii format and converts it to an interger
 - It accepts a pointer as its argumnt and returns the numerical value
 */
@@ -18,7 +18,7 @@ int atoi(char *string)
     int numerical_value;
     int sign;
     numerical_value = 0;
-    while (isspace(*string))
+    while (isspace(*string)) /*Skips whitespace*/
         string++;
     sign = (*string == '-') ? -1 : 1;
     if (*string == '-' || *string == '+')
@@ -26,7 +26,7 @@ int atoi(char *string)
         string++;
     }
 
-    while (*string)
+    while (*string) /* This is equivalent to checking for the null: (/0) that is t mean: * dereferences  the pointer.*/
     {
         if ('0' <= *string && *string <= '9')
         {
