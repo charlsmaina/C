@@ -26,7 +26,7 @@ void reverse(char *string_pointer)
     while (temp_string_pointer > string_pointer)
     {
         int temp;
-        temp = *string_pointer;
+        temp = *string_pointer; /*String pointer is visible at this point)*/
 
         *string_pointer = *temp_string_pointer;
         *temp_string_pointer = temp;
