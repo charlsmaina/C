@@ -12,8 +12,7 @@ occurrence of t in s, or -1 if there is none.
 */
 
 #include "../headers/ge_tline.h"
-
-int string_index(char line[], char pattern[]);
+#include "../headers/strindex.h"
 
 #include <stdio.h>
 #define LIMIT 100
@@ -28,7 +27,7 @@ int main(void)
 
         if (ge_tline(pattern, PATERN_LEN) > 0)
         {
-            printf("Pattern occurs in rightmost position at index:%d\n", string_index(line, pattern));
+            printf("Pattern occurs in rightmost position at index:%d\n", strindex(line, pattern));
         }
     }
     return 0;
